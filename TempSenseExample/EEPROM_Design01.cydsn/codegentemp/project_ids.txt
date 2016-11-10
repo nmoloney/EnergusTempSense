@@ -1,0 +1,10 @@
+C:\Users\nm\Desktop\TempSenseExample\CE210514_PSOC4_Thermistor.cydsn\CE210514_PSOC4_Thermistor.cyprj|c6f908c3-a812-4644-bd13-8c1b976e7077
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|50513e7c-3a90-4a14-ae72-1d84060a58c4
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|54be0874-213a-4223-a2f1-744a2f6a827d
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|826eadef-686d-462e-b881-5469cd7d8f8c
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|d6034f73-7d67-4588-87e2-afa675f5cfc3
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|f67b5c5a-2350-408f-aad2-3048e43677a3
+C:\Users\nm\Desktop\TempSenseExample\CE210514_PSOC3_5_Thermistor.cydsn\CE210514_PSOC3_5_Thermistor.cyprj|6abca565-9233-4b75-a28f-4b1555959f83
+C:\Users\nm\Desktop\TempSenseExample\Energus_Temp_Sense.cydsn\Energus_Temp_Sense.cyprj|cf10204c-8188-4de6-8762-9720c8a89d83
+C:\Program Files (x86)\Cypress\PSoC Creator\3.3\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|0f0e8820-7b65-4b38-88ff-58c00c83cec3
+C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\EEPROM_Design01.cyprj|5353ad3c-0986-434c-b9ef-6f65eb8d71c0

@@ -1,0 +1,784 @@
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"ADC_INT.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.ADC_ISR1,"ax",%progbits
+  19              		.align	2
+  20              		.global	ADC_ISR1
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	ADC_ISR1, %function
+  24              	ADC_ISR1:
+  25              	.LFB0:
+  26              		.file 1 ".\\Generated_Source\\PSoC5\\ADC_INT.c"
+   1:.\Generated_Source\PSoC5/ADC_INT.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC5/ADC_INT.c **** * File Name: ADC_INT.c
+   3:.\Generated_Source\PSoC5/ADC_INT.c **** * Version 3.20
+   4:.\Generated_Source\PSoC5/ADC_INT.c **** *
+   5:.\Generated_Source\PSoC5/ADC_INT.c **** * Description:
+   6:.\Generated_Source\PSoC5/ADC_INT.c **** *  This file contains the code that operates during the ADC_DelSig interrupt
+   7:.\Generated_Source\PSoC5/ADC_INT.c **** *  service routine.
+   8:.\Generated_Source\PSoC5/ADC_INT.c **** *
+   9:.\Generated_Source\PSoC5/ADC_INT.c **** * Note:
+  10:.\Generated_Source\PSoC5/ADC_INT.c **** *
+  11:.\Generated_Source\PSoC5/ADC_INT.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC5/ADC_INT.c **** * Copyright 2008-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC5/ADC_INT.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC5/ADC_INT.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC5/ADC_INT.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC5/ADC_INT.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  18:.\Generated_Source\PSoC5/ADC_INT.c **** #include "ADC.h"
+  19:.\Generated_Source\PSoC5/ADC_INT.c **** #include "cyapicallbacks.h"
+  20:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  21:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  22:.\Generated_Source\PSoC5/ADC_INT.c **** /*******************************************************************************
+  23:.\Generated_Source\PSoC5/ADC_INT.c **** * Custom Declarations and Variables
+  24:.\Generated_Source\PSoC5/ADC_INT.c **** * - add user include files, prototypes and variables between the following
+  25:.\Generated_Source\PSoC5/ADC_INT.c **** *   #START and #END tags
+  26:.\Generated_Source\PSoC5/ADC_INT.c **** *******************************************************************************/
+  27:.\Generated_Source\PSoC5/ADC_INT.c **** /* `#START ADC_SYS_VAR`  */
+  28:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  29:.\Generated_Source\PSoC5/ADC_INT.c **** /* `#END`  */
+  30:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  31:.\Generated_Source\PSoC5/ADC_INT.c **** #if(ADC_IRQ_REMOVE == 0u)
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 2
+
+
+  32:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  33:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  34:.\Generated_Source\PSoC5/ADC_INT.c ****     /*****************************************************************************
+  35:.\Generated_Source\PSoC5/ADC_INT.c ****     * Function Name: ADC_ISR1
+  36:.\Generated_Source\PSoC5/ADC_INT.c ****     ******************************************************************************
+  37:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  38:.\Generated_Source\PSoC5/ADC_INT.c ****     * Summary:
+  39:.\Generated_Source\PSoC5/ADC_INT.c ****     *  Handle Interrupt Service Routine.
+  40:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  41:.\Generated_Source\PSoC5/ADC_INT.c ****     * Parameters:
+  42:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+  43:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  44:.\Generated_Source\PSoC5/ADC_INT.c ****     * Return:
+  45:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+  46:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  47:.\Generated_Source\PSoC5/ADC_INT.c ****     * Reentrant:
+  48:.\Generated_Source\PSoC5/ADC_INT.c ****     *  No
+  49:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  50:.\Generated_Source\PSoC5/ADC_INT.c ****     *****************************************************************************/
+  51:.\Generated_Source\PSoC5/ADC_INT.c ****     CY_ISR( ADC_ISR1)
+  52:.\Generated_Source\PSoC5/ADC_INT.c ****     {
+  27              		.loc 1 52 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  53:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR1_ENTRY_CALLBACK
+  54:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR1_EntryCallback();
+  55:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR1_ENTRY_CALLBACK */
+  56:.\Generated_Source\PSoC5/ADC_INT.c ****         
+  57:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  58:.\Generated_Source\PSoC5/ADC_INT.c ****         /**************************************************************************
+  59:.\Generated_Source\PSoC5/ADC_INT.c ****         *  Custom Code
+  60:.\Generated_Source\PSoC5/ADC_INT.c ****         *  - add user ISR code between the following #START and #END tags
+  61:.\Generated_Source\PSoC5/ADC_INT.c ****         **************************************************************************/
+  62:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#START MAIN_ADC_ISR1`  */
+  63:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  64:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#END`  */
+  65:.\Generated_Source\PSoC5/ADC_INT.c ****         
+  66:.\Generated_Source\PSoC5/ADC_INT.c ****         /* Stop the conversion if conversion mode is single sample and resolution
+  67:.\Generated_Source\PSoC5/ADC_INT.c ****         *  is above 16 bits.
+  68:.\Generated_Source\PSoC5/ADC_INT.c ****         */
+  69:.\Generated_Source\PSoC5/ADC_INT.c ****         #if(ADC_CFG1_RESOLUTION > 16 && \
+  70:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_CFG1_CONV_MODE == ADC_MODE_SINGLE_SAMPLE)
+  71:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_StopConvert();
+  35              		.loc 1 71 0
+  36 0002 FFF7FEFF 		bl	ADC_StopConvert
+  37              	.LVL0:
+  72:.\Generated_Source\PSoC5/ADC_INT.c ****             /* Software flag for checking conversion complete or not. Will be used when
+  73:.\Generated_Source\PSoC5/ADC_INT.c ****             *  resolution is above 16 bits and conversion mode is single sample 
+  74:.\Generated_Source\PSoC5/ADC_INT.c **** 			*/
+  75:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_convDone = ADC_DEC_CONV_DONE;
+  38              		.loc 1 75 0
+  39 0006 0122     		movs	r2, #1
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 3
+
+
+  40 0008 014B     		ldr	r3, .L3
+  41 000a 1A70     		strb	r2, [r3]
+  42 000c 08BD     		pop	{r3, pc}
+  43              	.L4:
+  44 000e 00BF     		.align	2
+  45              	.L3:
+  46 0010 00000000 		.word	ADC_convDone
+  47              		.cfi_endproc
+  48              	.LFE0:
+  49              		.size	ADC_ISR1, .-ADC_ISR1
+  50              		.section	.text.ADC_ISR2,"ax",%progbits
+  51              		.align	2
+  52              		.global	ADC_ISR2
+  53              		.thumb
+  54              		.thumb_func
+  55              		.type	ADC_ISR2, %function
+  56              	ADC_ISR2:
+  57              	.LFB1:
+  76:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* Single sample conversion mode with resolution above 16 bits */
+  77:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  78:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR1_EXIT_CALLBACK
+  79:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR1_ExitCallback();
+  80:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR1_EXIT_CALLBACK */
+  81:.\Generated_Source\PSoC5/ADC_INT.c ****     }
+  82:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  83:.\Generated_Source\PSoC5/ADC_INT.c **** 
+  84:.\Generated_Source\PSoC5/ADC_INT.c ****     /*****************************************************************************
+  85:.\Generated_Source\PSoC5/ADC_INT.c ****     * Function Name: ADC_ISR2
+  86:.\Generated_Source\PSoC5/ADC_INT.c ****     ******************************************************************************
+  87:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  88:.\Generated_Source\PSoC5/ADC_INT.c ****     * Summary:
+  89:.\Generated_Source\PSoC5/ADC_INT.c ****     *  Handle Interrupt Service Routine.
+  90:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  91:.\Generated_Source\PSoC5/ADC_INT.c ****     * Parameters:
+  92:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+  93:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  94:.\Generated_Source\PSoC5/ADC_INT.c ****     * Return:
+  95:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+  96:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+  97:.\Generated_Source\PSoC5/ADC_INT.c ****     * Reentrant:
+  98:.\Generated_Source\PSoC5/ADC_INT.c ****     *  No
+  99:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 100:.\Generated_Source\PSoC5/ADC_INT.c ****     *****************************************************************************/
+ 101:.\Generated_Source\PSoC5/ADC_INT.c ****     CY_ISR( ADC_ISR2)
+ 102:.\Generated_Source\PSoC5/ADC_INT.c ****     {
+  58              		.loc 1 102 0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62              		@ link register save eliminated.
+  63 0000 7047     		bx	lr
+  64              		.cfi_endproc
+  65              	.LFE1:
+  66              		.size	ADC_ISR2, .-ADC_ISR2
+  67 0002 00BF     		.section	.text.ADC_ISR3,"ax",%progbits
+  68              		.align	2
+  69              		.global	ADC_ISR3
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 4
+
+
+  70              		.thumb
+  71              		.thumb_func
+  72              		.type	ADC_ISR3, %function
+  73              	ADC_ISR3:
+  74              	.LFB2:
+ 103:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR2_ENTRY_CALLBACK
+ 104:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR2_EntryCallback();
+ 105:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR2_ENTRY_CALLBACK */
+ 106:.\Generated_Source\PSoC5/ADC_INT.c ****         
+ 107:.\Generated_Source\PSoC5/ADC_INT.c ****         
+ 108:.\Generated_Source\PSoC5/ADC_INT.c ****         /***************************************************************************
+ 109:.\Generated_Source\PSoC5/ADC_INT.c ****         *  Custom Code
+ 110:.\Generated_Source\PSoC5/ADC_INT.c ****         *  - add user ISR code between the following #START and #END tags
+ 111:.\Generated_Source\PSoC5/ADC_INT.c ****         **************************************************************************/
+ 112:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#START MAIN_ADC_ISR2`  */
+ 113:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 114:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#END`  */
+ 115:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 116:.\Generated_Source\PSoC5/ADC_INT.c ****         /* Stop the conversion conversion mode is single sample and resolution
+ 117:.\Generated_Source\PSoC5/ADC_INT.c ****         *  is above 16 bits.
+ 118:.\Generated_Source\PSoC5/ADC_INT.c ****         */
+ 119:.\Generated_Source\PSoC5/ADC_INT.c ****         #if(ADC_CFG2_RESOLUTION > 16 && \
+ 120:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_CFG2_CONVMODE == ADC_MODE_SINGLE_SAMPLE)
+ 121:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_StopConvert();
+ 122:.\Generated_Source\PSoC5/ADC_INT.c ****             /* Software flag for checking conversion complete or not. Will be used when
+ 123:.\Generated_Source\PSoC5/ADC_INT.c ****             *   resolution is above 16 bits and conversion mode is single sample 
+ 124:.\Generated_Source\PSoC5/ADC_INT.c **** 			*/
+ 125:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_convDone = ADC_DEC_CONV_DONE;
+ 126:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* Single sample conversion mode with resolution above 16 bits */
+ 127:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 128:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR2_EXIT_CALLBACK
+ 129:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR2_ExitCallback();
+ 130:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR2_EXIT_CALLBACK */
+ 131:.\Generated_Source\PSoC5/ADC_INT.c ****     }
+ 132:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 133:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 134:.\Generated_Source\PSoC5/ADC_INT.c ****     /*****************************************************************************
+ 135:.\Generated_Source\PSoC5/ADC_INT.c ****     * Function Name: ADC_ISR3
+ 136:.\Generated_Source\PSoC5/ADC_INT.c ****     ******************************************************************************
+ 137:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 138:.\Generated_Source\PSoC5/ADC_INT.c ****     * Summary:
+ 139:.\Generated_Source\PSoC5/ADC_INT.c ****     *  Handle Interrupt Service Routine.
+ 140:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 141:.\Generated_Source\PSoC5/ADC_INT.c ****     * Parameters:
+ 142:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+ 143:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 144:.\Generated_Source\PSoC5/ADC_INT.c ****     * Return:
+ 145:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+ 146:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 147:.\Generated_Source\PSoC5/ADC_INT.c ****     * Reentrant:
+ 148:.\Generated_Source\PSoC5/ADC_INT.c ****     *  No
+ 149:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 150:.\Generated_Source\PSoC5/ADC_INT.c ****     *****************************************************************************/
+ 151:.\Generated_Source\PSoC5/ADC_INT.c ****     CY_ISR( ADC_ISR3)
+ 152:.\Generated_Source\PSoC5/ADC_INT.c ****     {
+  75              		.loc 1 152 0
+  76              		.cfi_startproc
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 5
+
+
+  77              		@ args = 0, pretend = 0, frame = 0
+  78              		@ frame_needed = 0, uses_anonymous_args = 0
+  79              		@ link register save eliminated.
+  80 0000 7047     		bx	lr
+  81              		.cfi_endproc
+  82              	.LFE2:
+  83              		.size	ADC_ISR3, .-ADC_ISR3
+  84 0002 00BF     		.section	.text.ADC_ISR4,"ax",%progbits
+  85              		.align	2
+  86              		.global	ADC_ISR4
+  87              		.thumb
+  88              		.thumb_func
+  89              		.type	ADC_ISR4, %function
+  90              	ADC_ISR4:
+  91              	.LFB3:
+ 153:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR3_ENTRY_CALLBACK
+ 154:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR3_EntryCallback();
+ 155:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR3_ENTRY_CALLBACK */        
+ 156:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 157:.\Generated_Source\PSoC5/ADC_INT.c ****         
+ 158:.\Generated_Source\PSoC5/ADC_INT.c ****         /***************************************************************************
+ 159:.\Generated_Source\PSoC5/ADC_INT.c ****         *  Custom Code
+ 160:.\Generated_Source\PSoC5/ADC_INT.c ****         *  - add user ISR code between the following #START and #END tags
+ 161:.\Generated_Source\PSoC5/ADC_INT.c ****         **************************************************************************/
+ 162:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#START MAIN_ADC_ISR3`  */
+ 163:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 164:.\Generated_Source\PSoC5/ADC_INT.c ****         /* `#END`  */
+ 165:.\Generated_Source\PSoC5/ADC_INT.c ****         
+ 166:.\Generated_Source\PSoC5/ADC_INT.c ****         /* Stop the conversion if conversion mode is set to single sample and
+ 167:.\Generated_Source\PSoC5/ADC_INT.c ****         *  resolution is above 16 bits.
+ 168:.\Generated_Source\PSoC5/ADC_INT.c ****         */
+ 169:.\Generated_Source\PSoC5/ADC_INT.c ****         #if(ADC_CFG3_RESOLUTION > 16 && \
+ 170:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_CFG3_CONVMODE == ADC_MODE_SINGLE_SAMPLE)
+ 171:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_StopConvert();
+ 172:.\Generated_Source\PSoC5/ADC_INT.c ****             /* Software flag for checking conversion complete or not. Will be used when
+ 173:.\Generated_Source\PSoC5/ADC_INT.c ****             *  resolution is above 16 bits and conversion mode is single sample 
+ 174:.\Generated_Source\PSoC5/ADC_INT.c **** 			*/
+ 175:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_convDone = ADC_DEC_CONV_DONE;
+ 176:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* Single sample conversion mode with resolution above 16 bits */
+ 177:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 178:.\Generated_Source\PSoC5/ADC_INT.c ****         #ifdef ADC_ISR3_EXIT_CALLBACK
+ 179:.\Generated_Source\PSoC5/ADC_INT.c ****             ADC_ISR3_ExitCallback();
+ 180:.\Generated_Source\PSoC5/ADC_INT.c ****         #endif /* ADC_ISR3_EXIT_CALLBACK */        
+ 181:.\Generated_Source\PSoC5/ADC_INT.c ****     }
+ 182:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 183:.\Generated_Source\PSoC5/ADC_INT.c **** 
+ 184:.\Generated_Source\PSoC5/ADC_INT.c ****     /*****************************************************************************
+ 185:.\Generated_Source\PSoC5/ADC_INT.c ****     * Function Name: ADC_ISR4
+ 186:.\Generated_Source\PSoC5/ADC_INT.c ****     ******************************************************************************
+ 187:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 188:.\Generated_Source\PSoC5/ADC_INT.c ****     * Summary:
+ 189:.\Generated_Source\PSoC5/ADC_INT.c ****     *  Handle Interrupt Service Routine.
+ 190:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 191:.\Generated_Source\PSoC5/ADC_INT.c ****     * Parameters:
+ 192:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+ 193:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 194:.\Generated_Source\PSoC5/ADC_INT.c ****     * Return:
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 6
+
+
+ 195:.\Generated_Source\PSoC5/ADC_INT.c ****     *  None
+ 196:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 197:.\Generated_Source\PSoC5/ADC_INT.c ****     * Reentrant:
+ 198:.\Generated_Source\PSoC5/ADC_INT.c ****     *  No
+ 199:.\Generated_Source\PSoC5/ADC_INT.c ****     *
+ 200:.\Generated_Source\PSoC5/ADC_INT.c ****     *****************************************************************************/
+ 201:.\Generated_Source\PSoC5/ADC_INT.c ****     CY_ISR( ADC_ISR4)
+ 202:.\Generated_Source\PSoC5/ADC_INT.c ****     {
+  92              		.loc 1 202 0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 0
+  95              		@ frame_needed = 0, uses_anonymous_args = 0
+  96              		@ link register save eliminated.
+  97 0000 7047     		bx	lr
+  98              		.cfi_endproc
+  99              	.LFE3:
+ 100              		.size	ADC_ISR4, .-ADC_ISR4
+ 101 0002 00BF     		.text
+ 102              	.Letext0:
+ 103              		.file 2 ".\\Generated_Source\\PSoC5\\cytypes.h"
+ 104              		.file 3 ".\\Generated_Source\\PSoC5\\ADC.h"
+ 105              		.section	.debug_info,"",%progbits
+ 106              	.Ldebug_info0:
+ 107 0000 F9000000 		.4byte	0xf9
+ 108 0004 0400     		.2byte	0x4
+ 109 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 110 000a 04       		.byte	0x4
+ 111 000b 01       		.uleb128 0x1
+ 112 000c BE000000 		.4byte	.LASF16
+ 113 0010 01       		.byte	0x1
+ 114 0011 59000000 		.4byte	.LASF17
+ 115 0015 0E000000 		.4byte	.LASF18
+ 116 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 117 001d 00000000 		.4byte	0
+ 118 0021 00000000 		.4byte	.Ldebug_line0
+ 119 0025 02       		.uleb128 0x2
+ 120 0026 01       		.byte	0x1
+ 121 0027 06       		.byte	0x6
+ 122 0028 B0010000 		.4byte	.LASF0
+ 123 002c 02       		.uleb128 0x2
+ 124 002d 01       		.byte	0x1
+ 125 002e 08       		.byte	0x8
+ 126 002f 4C010000 		.4byte	.LASF1
+ 127 0033 02       		.uleb128 0x2
+ 128 0034 02       		.byte	0x2
+ 129 0035 05       		.byte	0x5
+ 130 0036 C2010000 		.4byte	.LASF2
+ 131 003a 02       		.uleb128 0x2
+ 132 003b 02       		.byte	0x2
+ 133 003c 07       		.byte	0x7
+ 134 003d AB000000 		.4byte	.LASF3
+ 135 0041 02       		.uleb128 0x2
+ 136 0042 04       		.byte	0x4
+ 137 0043 05       		.byte	0x5
+ 138 0044 7E010000 		.4byte	.LASF4
+ 139 0048 02       		.uleb128 0x2
+ 140 0049 04       		.byte	0x4
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 7
+
+
+ 141 004a 07       		.byte	0x7
+ 142 004b 82000000 		.4byte	.LASF5
+ 143 004f 02       		.uleb128 0x2
+ 144 0050 08       		.byte	0x8
+ 145 0051 05       		.byte	0x5
+ 146 0052 00000000 		.4byte	.LASF6
+ 147 0056 02       		.uleb128 0x2
+ 148 0057 08       		.byte	0x8
+ 149 0058 07       		.byte	0x7
+ 150 0059 94000000 		.4byte	.LASF7
+ 151 005d 03       		.uleb128 0x3
+ 152 005e 04       		.byte	0x4
+ 153 005f 05       		.byte	0x5
+ 154 0060 696E7400 		.ascii	"int\000"
+ 155 0064 02       		.uleb128 0x2
+ 156 0065 04       		.byte	0x4
+ 157 0066 07       		.byte	0x7
+ 158 0067 4C000000 		.4byte	.LASF8
+ 159 006b 04       		.uleb128 0x4
+ 160 006c 7C000000 		.4byte	.LASF19
+ 161 0070 02       		.byte	0x2
+ 162 0071 3801     		.2byte	0x138
+ 163 0073 2C000000 		.4byte	0x2c
+ 164 0077 02       		.uleb128 0x2
+ 165 0078 04       		.byte	0x4
+ 166 0079 04       		.byte	0x4
+ 167 007a BC010000 		.4byte	.LASF9
+ 168 007e 02       		.uleb128 0x2
+ 169 007f 08       		.byte	0x8
+ 170 0080 04       		.byte	0x4
+ 171 0081 87010000 		.4byte	.LASF10
+ 172 0085 02       		.uleb128 0x2
+ 173 0086 01       		.byte	0x1
+ 174 0087 08       		.byte	0x8
+ 175 0088 63010000 		.4byte	.LASF11
+ 176 008c 05       		.uleb128 0x5
+ 177 008d 6B000000 		.4byte	0x6b
+ 178 0091 02       		.uleb128 0x2
+ 179 0092 04       		.byte	0x4
+ 180 0093 07       		.byte	0x7
+ 181 0094 CC010000 		.4byte	.LASF12
+ 182 0098 06       		.uleb128 0x6
+ 183 0099 8E010000 		.4byte	.LASF20
+ 184 009d 01       		.byte	0x1
+ 185 009e 33       		.byte	0x33
+ 186 009f 00000000 		.4byte	.LFB0
+ 187 00a3 14000000 		.4byte	.LFE0-.LFB0
+ 188 00a7 01       		.uleb128 0x1
+ 189 00a8 9C       		.byte	0x9c
+ 190 00a9 B7000000 		.4byte	0xb7
+ 191 00ad 07       		.uleb128 0x7
+ 192 00ae 06000000 		.4byte	.LVL0
+ 193 00b2 F5000000 		.4byte	0xf5
+ 194 00b6 00       		.byte	0
+ 195 00b7 08       		.uleb128 0x8
+ 196 00b8 97010000 		.4byte	.LASF13
+ 197 00bc 01       		.byte	0x1
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 8
+
+
+ 198 00bd 65       		.byte	0x65
+ 199 00be 00000000 		.4byte	.LFB1
+ 200 00c2 02000000 		.4byte	.LFE1-.LFB1
+ 201 00c6 01       		.uleb128 0x1
+ 202 00c7 9C       		.byte	0x9c
+ 203 00c8 08       		.uleb128 0x8
+ 204 00c9 5A010000 		.4byte	.LASF14
+ 205 00cd 01       		.byte	0x1
+ 206 00ce 97       		.byte	0x97
+ 207 00cf 00000000 		.4byte	.LFB2
+ 208 00d3 02000000 		.4byte	.LFE2-.LFB2
+ 209 00d7 01       		.uleb128 0x1
+ 210 00d8 9C       		.byte	0x9c
+ 211 00d9 08       		.uleb128 0x8
+ 212 00da 68010000 		.4byte	.LASF15
+ 213 00de 01       		.byte	0x1
+ 214 00df C9       		.byte	0xc9
+ 215 00e0 00000000 		.4byte	.LFB3
+ 216 00e4 02000000 		.4byte	.LFE3-.LFB3
+ 217 00e8 01       		.uleb128 0x1
+ 218 00e9 9C       		.byte	0x9c
+ 219 00ea 09       		.uleb128 0x9
+ 220 00eb 71010000 		.4byte	.LASF21
+ 221 00ef 03       		.byte	0x3
+ 222 00f0 FB       		.byte	0xfb
+ 223 00f1 8C000000 		.4byte	0x8c
+ 224 00f5 0A       		.uleb128 0xa
+ 225 00f6 A0010000 		.4byte	.LASF22
+ 226 00fa 03       		.byte	0x3
+ 227 00fb 3E       		.byte	0x3e
+ 228 00fc 00       		.byte	0
+ 229              		.section	.debug_abbrev,"",%progbits
+ 230              	.Ldebug_abbrev0:
+ 231 0000 01       		.uleb128 0x1
+ 232 0001 11       		.uleb128 0x11
+ 233 0002 01       		.byte	0x1
+ 234 0003 25       		.uleb128 0x25
+ 235 0004 0E       		.uleb128 0xe
+ 236 0005 13       		.uleb128 0x13
+ 237 0006 0B       		.uleb128 0xb
+ 238 0007 03       		.uleb128 0x3
+ 239 0008 0E       		.uleb128 0xe
+ 240 0009 1B       		.uleb128 0x1b
+ 241 000a 0E       		.uleb128 0xe
+ 242 000b 55       		.uleb128 0x55
+ 243 000c 17       		.uleb128 0x17
+ 244 000d 11       		.uleb128 0x11
+ 245 000e 01       		.uleb128 0x1
+ 246 000f 10       		.uleb128 0x10
+ 247 0010 17       		.uleb128 0x17
+ 248 0011 00       		.byte	0
+ 249 0012 00       		.byte	0
+ 250 0013 02       		.uleb128 0x2
+ 251 0014 24       		.uleb128 0x24
+ 252 0015 00       		.byte	0
+ 253 0016 0B       		.uleb128 0xb
+ 254 0017 0B       		.uleb128 0xb
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 9
+
+
+ 255 0018 3E       		.uleb128 0x3e
+ 256 0019 0B       		.uleb128 0xb
+ 257 001a 03       		.uleb128 0x3
+ 258 001b 0E       		.uleb128 0xe
+ 259 001c 00       		.byte	0
+ 260 001d 00       		.byte	0
+ 261 001e 03       		.uleb128 0x3
+ 262 001f 24       		.uleb128 0x24
+ 263 0020 00       		.byte	0
+ 264 0021 0B       		.uleb128 0xb
+ 265 0022 0B       		.uleb128 0xb
+ 266 0023 3E       		.uleb128 0x3e
+ 267 0024 0B       		.uleb128 0xb
+ 268 0025 03       		.uleb128 0x3
+ 269 0026 08       		.uleb128 0x8
+ 270 0027 00       		.byte	0
+ 271 0028 00       		.byte	0
+ 272 0029 04       		.uleb128 0x4
+ 273 002a 16       		.uleb128 0x16
+ 274 002b 00       		.byte	0
+ 275 002c 03       		.uleb128 0x3
+ 276 002d 0E       		.uleb128 0xe
+ 277 002e 3A       		.uleb128 0x3a
+ 278 002f 0B       		.uleb128 0xb
+ 279 0030 3B       		.uleb128 0x3b
+ 280 0031 05       		.uleb128 0x5
+ 281 0032 49       		.uleb128 0x49
+ 282 0033 13       		.uleb128 0x13
+ 283 0034 00       		.byte	0
+ 284 0035 00       		.byte	0
+ 285 0036 05       		.uleb128 0x5
+ 286 0037 35       		.uleb128 0x35
+ 287 0038 00       		.byte	0
+ 288 0039 49       		.uleb128 0x49
+ 289 003a 13       		.uleb128 0x13
+ 290 003b 00       		.byte	0
+ 291 003c 00       		.byte	0
+ 292 003d 06       		.uleb128 0x6
+ 293 003e 2E       		.uleb128 0x2e
+ 294 003f 01       		.byte	0x1
+ 295 0040 3F       		.uleb128 0x3f
+ 296 0041 19       		.uleb128 0x19
+ 297 0042 03       		.uleb128 0x3
+ 298 0043 0E       		.uleb128 0xe
+ 299 0044 3A       		.uleb128 0x3a
+ 300 0045 0B       		.uleb128 0xb
+ 301 0046 3B       		.uleb128 0x3b
+ 302 0047 0B       		.uleb128 0xb
+ 303 0048 27       		.uleb128 0x27
+ 304 0049 19       		.uleb128 0x19
+ 305 004a 11       		.uleb128 0x11
+ 306 004b 01       		.uleb128 0x1
+ 307 004c 12       		.uleb128 0x12
+ 308 004d 06       		.uleb128 0x6
+ 309 004e 40       		.uleb128 0x40
+ 310 004f 18       		.uleb128 0x18
+ 311 0050 9742     		.uleb128 0x2117
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 10
+
+
+ 312 0052 19       		.uleb128 0x19
+ 313 0053 01       		.uleb128 0x1
+ 314 0054 13       		.uleb128 0x13
+ 315 0055 00       		.byte	0
+ 316 0056 00       		.byte	0
+ 317 0057 07       		.uleb128 0x7
+ 318 0058 898201   		.uleb128 0x4109
+ 319 005b 00       		.byte	0
+ 320 005c 11       		.uleb128 0x11
+ 321 005d 01       		.uleb128 0x1
+ 322 005e 31       		.uleb128 0x31
+ 323 005f 13       		.uleb128 0x13
+ 324 0060 00       		.byte	0
+ 325 0061 00       		.byte	0
+ 326 0062 08       		.uleb128 0x8
+ 327 0063 2E       		.uleb128 0x2e
+ 328 0064 00       		.byte	0
+ 329 0065 3F       		.uleb128 0x3f
+ 330 0066 19       		.uleb128 0x19
+ 331 0067 03       		.uleb128 0x3
+ 332 0068 0E       		.uleb128 0xe
+ 333 0069 3A       		.uleb128 0x3a
+ 334 006a 0B       		.uleb128 0xb
+ 335 006b 3B       		.uleb128 0x3b
+ 336 006c 0B       		.uleb128 0xb
+ 337 006d 27       		.uleb128 0x27
+ 338 006e 19       		.uleb128 0x19
+ 339 006f 11       		.uleb128 0x11
+ 340 0070 01       		.uleb128 0x1
+ 341 0071 12       		.uleb128 0x12
+ 342 0072 06       		.uleb128 0x6
+ 343 0073 40       		.uleb128 0x40
+ 344 0074 18       		.uleb128 0x18
+ 345 0075 9742     		.uleb128 0x2117
+ 346 0077 19       		.uleb128 0x19
+ 347 0078 00       		.byte	0
+ 348 0079 00       		.byte	0
+ 349 007a 09       		.uleb128 0x9
+ 350 007b 34       		.uleb128 0x34
+ 351 007c 00       		.byte	0
+ 352 007d 03       		.uleb128 0x3
+ 353 007e 0E       		.uleb128 0xe
+ 354 007f 3A       		.uleb128 0x3a
+ 355 0080 0B       		.uleb128 0xb
+ 356 0081 3B       		.uleb128 0x3b
+ 357 0082 0B       		.uleb128 0xb
+ 358 0083 49       		.uleb128 0x49
+ 359 0084 13       		.uleb128 0x13
+ 360 0085 3F       		.uleb128 0x3f
+ 361 0086 19       		.uleb128 0x19
+ 362 0087 3C       		.uleb128 0x3c
+ 363 0088 19       		.uleb128 0x19
+ 364 0089 00       		.byte	0
+ 365 008a 00       		.byte	0
+ 366 008b 0A       		.uleb128 0xa
+ 367 008c 2E       		.uleb128 0x2e
+ 368 008d 00       		.byte	0
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 11
+
+
+ 369 008e 3F       		.uleb128 0x3f
+ 370 008f 19       		.uleb128 0x19
+ 371 0090 03       		.uleb128 0x3
+ 372 0091 0E       		.uleb128 0xe
+ 373 0092 3A       		.uleb128 0x3a
+ 374 0093 0B       		.uleb128 0xb
+ 375 0094 3B       		.uleb128 0x3b
+ 376 0095 0B       		.uleb128 0xb
+ 377 0096 27       		.uleb128 0x27
+ 378 0097 19       		.uleb128 0x19
+ 379 0098 3C       		.uleb128 0x3c
+ 380 0099 19       		.uleb128 0x19
+ 381 009a 00       		.byte	0
+ 382 009b 00       		.byte	0
+ 383 009c 00       		.byte	0
+ 384              		.section	.debug_aranges,"",%progbits
+ 385 0000 34000000 		.4byte	0x34
+ 386 0004 0200     		.2byte	0x2
+ 387 0006 00000000 		.4byte	.Ldebug_info0
+ 388 000a 04       		.byte	0x4
+ 389 000b 00       		.byte	0
+ 390 000c 0000     		.2byte	0
+ 391 000e 0000     		.2byte	0
+ 392 0010 00000000 		.4byte	.LFB0
+ 393 0014 14000000 		.4byte	.LFE0-.LFB0
+ 394 0018 00000000 		.4byte	.LFB1
+ 395 001c 02000000 		.4byte	.LFE1-.LFB1
+ 396 0020 00000000 		.4byte	.LFB2
+ 397 0024 02000000 		.4byte	.LFE2-.LFB2
+ 398 0028 00000000 		.4byte	.LFB3
+ 399 002c 02000000 		.4byte	.LFE3-.LFB3
+ 400 0030 00000000 		.4byte	0
+ 401 0034 00000000 		.4byte	0
+ 402              		.section	.debug_ranges,"",%progbits
+ 403              	.Ldebug_ranges0:
+ 404 0000 00000000 		.4byte	.LFB0
+ 405 0004 14000000 		.4byte	.LFE0
+ 406 0008 00000000 		.4byte	.LFB1
+ 407 000c 02000000 		.4byte	.LFE1
+ 408 0010 00000000 		.4byte	.LFB2
+ 409 0014 02000000 		.4byte	.LFE2
+ 410 0018 00000000 		.4byte	.LFB3
+ 411 001c 02000000 		.4byte	.LFE3
+ 412 0020 00000000 		.4byte	0
+ 413 0024 00000000 		.4byte	0
+ 414              		.section	.debug_line,"",%progbits
+ 415              	.Ldebug_line0:
+ 416 0000 98000000 		.section	.debug_str,"MS",%progbits,1
+ 416      02004F00 
+ 416      00000201 
+ 416      FB0E0D00 
+ 416      01010101 
+ 417              	.LASF6:
+ 418 0000 6C6F6E67 		.ascii	"long long int\000"
+ 418      206C6F6E 
+ 418      6720696E 
+ 418      7400
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 12
+
+
+ 419              	.LASF18:
+ 420 000e 433A5C55 		.ascii	"C:\\Users\\nm\\Desktop\\TempSenseExample\\Energus_T"
+ 420      73657273 
+ 420      5C6E6D5C 
+ 420      4465736B 
+ 420      746F705C 
+ 421 003c 656D705F 		.ascii	"emp_Sense.cydsn\000"
+ 421      53656E73 
+ 421      652E6379 
+ 421      64736E00 
+ 422              	.LASF8:
+ 423 004c 756E7369 		.ascii	"unsigned int\000"
+ 423      676E6564 
+ 423      20696E74 
+ 423      00
+ 424              	.LASF17:
+ 425 0059 2E5C4765 		.ascii	".\\Generated_Source\\PSoC5\\ADC_INT.c\000"
+ 425      6E657261 
+ 425      7465645F 
+ 425      536F7572 
+ 425      63655C50 
+ 426              	.LASF19:
+ 427 007c 75696E74 		.ascii	"uint8\000"
+ 427      3800
+ 428              	.LASF5:
+ 429 0082 6C6F6E67 		.ascii	"long unsigned int\000"
+ 429      20756E73 
+ 429      69676E65 
+ 429      6420696E 
+ 429      7400
+ 430              	.LASF7:
+ 431 0094 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 431      206C6F6E 
+ 431      6720756E 
+ 431      7369676E 
+ 431      65642069 
+ 432              	.LASF3:
+ 433 00ab 73686F72 		.ascii	"short unsigned int\000"
+ 433      7420756E 
+ 433      7369676E 
+ 433      65642069 
+ 433      6E7400
+ 434              	.LASF16:
+ 435 00be 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 435      4320342E 
+ 435      392E3320 
+ 435      32303135 
+ 435      30333033 
+ 436 00f1 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 436      20726576 
+ 436      6973696F 
+ 436      6E203232 
+ 436      31323230 
+ 437 0124 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 437      66756E63 
+ 437      74696F6E 
+ 437      2D736563 
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 13
+
+
+ 437      74696F6E 
+ 438              	.LASF1:
+ 439 014c 756E7369 		.ascii	"unsigned char\000"
+ 439      676E6564 
+ 439      20636861 
+ 439      7200
+ 440              	.LASF14:
+ 441 015a 4144435F 		.ascii	"ADC_ISR3\000"
+ 441      49535233 
+ 441      00
+ 442              	.LASF11:
+ 443 0163 63686172 		.ascii	"char\000"
+ 443      00
+ 444              	.LASF15:
+ 445 0168 4144435F 		.ascii	"ADC_ISR4\000"
+ 445      49535234 
+ 445      00
+ 446              	.LASF21:
+ 447 0171 4144435F 		.ascii	"ADC_convDone\000"
+ 447      636F6E76 
+ 447      446F6E65 
+ 447      00
+ 448              	.LASF4:
+ 449 017e 6C6F6E67 		.ascii	"long int\000"
+ 449      20696E74 
+ 449      00
+ 450              	.LASF10:
+ 451 0187 646F7562 		.ascii	"double\000"
+ 451      6C6500
+ 452              	.LASF20:
+ 453 018e 4144435F 		.ascii	"ADC_ISR1\000"
+ 453      49535231 
+ 453      00
+ 454              	.LASF13:
+ 455 0197 4144435F 		.ascii	"ADC_ISR2\000"
+ 455      49535232 
+ 455      00
+ 456              	.LASF22:
+ 457 01a0 4144435F 		.ascii	"ADC_StopConvert\000"
+ 457      53746F70 
+ 457      436F6E76 
+ 457      65727400 
+ 458              	.LASF0:
+ 459 01b0 7369676E 		.ascii	"signed char\000"
+ 459      65642063 
+ 459      68617200 
+ 460              	.LASF9:
+ 461 01bc 666C6F61 		.ascii	"float\000"
+ 461      7400
+ 462              	.LASF2:
+ 463 01c2 73686F72 		.ascii	"short int\000"
+ 463      7420696E 
+ 463      7400
+ 464              	.LASF12:
+ 465 01cc 73697A65 		.ascii	"sizetype\000"
+ 465      74797065 
+ 465      00
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccsZHzV2.s 			page 14
+
+
+ 466              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

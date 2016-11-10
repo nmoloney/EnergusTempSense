@@ -1,0 +1,807 @@
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"main.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.global	__aeabi_i2f
+  19              		.global	__aeabi_fdiv
+  20              		.global	__aeabi_fmul
+  21              		.global	__aeabi_f2iz
+  22              		.section	.rodata
+  23              		.align	2
+  24              	.LC0:
+  25 0000 54656D70 		.ascii	"Temp=%ld.%02ld    \000"
+  25      3D256C64 
+  25      2E253032 
+  25      6C642020 
+  25      202000
+  26 0013 00       		.align	2
+  27              	.LC1:
+  28 0014 0A0D00   		.ascii	"\012\015\000"
+  29 0017 00       		.section	.text.main,"ax",%progbits
+  30              		.align	2
+  31              		.global	main
+  32              		.thumb
+  33              		.thumb_func
+  34              		.type	main, %function
+  35              	main:
+  36              	.LFB63:
+  37              		.file 1 ".\\main.c"
+   1:.\main.c      **** /*****************************************************************************
+   2:.\main.c      **** * File Name: main.c
+   3:.\main.c      **** *
+   4:.\main.c      **** * Version: 3.0
+   5:.\main.c      **** *
+   6:.\main.c      **** * Description:
+   7:.\main.c      **** *   The main C file for the Temperature measurement with Thermistor project. 
+   8:.\main.c      **** * 
+   9:.\main.c      **** * Note:
+  10:.\main.c      **** * 	The main project includes the ADC and other components required for the
+  11:.\main.c      **** *   temperature measurement. The Thermistor component is a complete firmware component
+  12:.\main.c      **** *   as decribed in the component datahseet and application note
+  13:.\main.c      **** ******************************************************************************
+  14:.\main.c      **** * Copyright (C) 2015, Cypress Semiconductor Corporation.
+  15:.\main.c      **** ******************************************************************************
+  16:.\main.c      **** * This software is owned by Cypress Semiconductor Corporation (Cypress) and is
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 2
+
+
+  17:.\main.c      **** * protected by and subject to worldwide patent protection (United States and
+  18:.\main.c      **** * foreign), United States copyright laws and international treaty provisions.
+  19:.\main.c      **** * Cypress hereby grants to licensee a personal, non-exclusive, non-transferable
+  20:.\main.c      **** * license to copy, use, modify, create derivative works of, and compile the
+  21:.\main.c      **** * Cypress Source Code and derivative works for the sole purpose of creating
+  22:.\main.c      **** * custom software in support of licensee product to be used only in conjunction
+  23:.\main.c      **** * with a Cypress integrated circuit as specified in the applicable agreement.
+  24:.\main.c      **** * Any reproduction, modification, translation, compilation, or representation of
+  25:.\main.c      **** * this software except as specified above is prohibited without the express
+  26:.\main.c      **** * written permission of Cypress.
+  27:.\main.c      **** *
+  28:.\main.c      **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH
+  29:.\main.c      **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  30:.\main.c      **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  31:.\main.c      **** * Cypress reserves the right to make changes without further notice to the
+  32:.\main.c      **** * materials described herein. Cypress does not assume any liability arising out
+  33:.\main.c      **** * of the application or use of any product or circuit described herein. Cypress
+  34:.\main.c      **** * does not authorize its products for use as critical components in life-support
+  35:.\main.c      **** * systems where a malfunction or failure may reasonably be expected to result in
+  36:.\main.c      **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  37:.\main.c      **** * support systems application implies that the manufacturer assumes all risk of
+  38:.\main.c      **** * such use and in doing so indemnifies Cypress against all charges. Use may be
+  39:.\main.c      **** * limited by and subject to the applicable Cypress software license agreement.
+  40:.\main.c      **** *****************************************************************************/
+  41:.\main.c      **** #include <device.h>
+  42:.\main.c      **** #include "removeOffsetNoise.h"
+  43:.\main.c      **** #include "measurement.h"
+  44:.\main.c      **** #include <stdio.h>
+  45:.\main.c      **** 	
+  46:.\main.c      **** int main(void)
+  47:.\main.c      **** {
+  38              		.loc 1 47 0
+  39              		.cfi_startproc
+  40              		@ args = 0, pretend = 0, frame = 40
+  41              		@ frame_needed = 1, uses_anonymous_args = 0
+  42 0000 90B5     		push	{r4, r7, lr}
+  43              		.cfi_def_cfa_offset 12
+  44              		.cfi_offset 4, -12
+  45              		.cfi_offset 7, -8
+  46              		.cfi_offset 14, -4
+  47 0002 8BB0     		sub	sp, sp, #44
+  48              		.cfi_def_cfa_offset 56
+  49 0004 00AF     		add	r7, sp, #0
+  50              		.cfi_def_cfa_register 7
+  48:.\main.c      **** 	/* Voltages across reference resistor and thermistor*/
+  49:.\main.c      **** 	int32 iVref, iVtherm;
+  50:.\main.c      **** 	
+  51:.\main.c      **** 	/* Resistance of Thermistor*/
+  52:.\main.c      **** 	uint32 iRes;
+  53:.\main.c      **** 	
+  54:.\main.c      **** 	/* Temperature value in 100ths of a degree C*/
+  55:.\main.c      **** 	int32 iTemp;
+  56:.\main.c      ****     
+  57:.\main.c      ****     /*Decimal Temp*/
+  58:.\main.c      ****     int32 decTemp;
+  59:.\main.c      ****     
+  60:.\main.c      ****     /*Fractional Temp*/
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 3
+
+
+  61:.\main.c      ****     int32 fracTemp;
+  62:.\main.c      **** 	
+  63:.\main.c      **** 	/* Dispaly format string */
+  64:.\main.c      **** 	char printBuf[16]={'\0'};
+  51              		.loc 1 64 0
+  52 0006 3B46     		mov	r3, r7
+  53 0008 0022     		movs	r2, #0
+  54 000a 1A60     		str	r2, [r3]
+  55 000c 0433     		adds	r3, r3, #4
+  56 000e 0022     		movs	r2, #0
+  57 0010 1A60     		str	r2, [r3]
+  58 0012 0433     		adds	r3, r3, #4
+  59 0014 0022     		movs	r2, #0
+  60 0016 1A60     		str	r2, [r3]
+  61 0018 0433     		adds	r3, r3, #4
+  62 001a 0022     		movs	r2, #0
+  63 001c 1A60     		str	r2, [r3]
+  64 001e 0433     		adds	r3, r3, #4
+  65:.\main.c      **** 
+  66:.\main.c      **** 	/*Enable global interrupts*/
+  67:.\main.c      **** 	CYGlobalIntEnable; 
+  65              		.loc 1 67 0
+  66              	@ 67 ".\main.c" 1
+  67 0020 62B6     		CPSIE   i
+  68              	@ 0 "" 2
+  68:.\main.c      **** 	
+  69:.\main.c      **** 	/*Start all the hardware components required*/
+  70:.\main.c      **** 	ADC_Start();
+  69              		.loc 1 70 0
+  70              		.thumb
+  71 0022 FFF7FEFF 		bl	ADC_Start
+  71:.\main.c      **** 	AMux_Start();
+  72              		.loc 1 71 0
+  73 0026 FFF7FEFF 		bl	AMux_Start
+  72:.\main.c      **** 	VDAC8_Start();
+  74              		.loc 1 72 0
+  75 002a FFF7FEFF 		bl	VDAC8_Start
+  73:.\main.c      **** 	Opamp_Start();
+  76              		.loc 1 73 0
+  77 002e FFF7FEFF 		bl	Opamp_Start
+  74:.\main.c      ****     UART_Start();
+  78              		.loc 1 74 0
+  79 0032 FFF7FEFF 		bl	UART_Start
+  80              	.L3:
+  75:.\main.c      **** 
+  76:.\main.c      **** 
+  77:.\main.c      **** 	for(;;)
+  78:.\main.c      ****     {
+  79:.\main.c      **** 
+  80:.\main.c      ****     	/* Measure Voltage Across Thermistor*/
+  81:.\main.c      ****     	iVtherm = MeasureResistorVoltage(AMUX_1_VT); 
+  81              		.loc 1 81 0
+  82 0036 0020     		movs	r0, #0
+  83 0038 FFF7FEFF 		bl	MeasureResistorVoltage
+  84 003c 3862     		str	r0, [r7, #32]
+  82:.\main.c      **** 		
+  83:.\main.c      **** 		/* Measure Voltage Across Reference Resistor*/
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 4
+
+
+  84:.\main.c      ****     	iVref = MeasureResistorVoltage(AMUX_1_VREF);
+  85              		.loc 1 84 0
+  86 003e 0120     		movs	r0, #1
+  87 0040 FFF7FEFF 		bl	MeasureResistorVoltage
+  88 0044 F861     		str	r0, [r7, #28]
+  85:.\main.c      **** 
+  86:.\main.c      **** 	   	/*Calculate the resistance of the Thermistor*/
+  87:.\main.c      **** 		iRes = (int32)(((float)iVtherm / iVref) * REFERENCE_RESISTOR);
+  89              		.loc 1 87 0
+  90 0046 386A     		ldr	r0, [r7, #32]
+  91 0048 FFF7FEFF 		bl	__aeabi_i2f
+  92 004c 0446     		mov	r4, r0
+  93 004e F869     		ldr	r0, [r7, #28]
+  94 0050 FFF7FEFF 		bl	__aeabi_i2f
+  95 0054 0346     		mov	r3, r0
+  96 0056 2046     		mov	r0, r4
+  97 0058 1946     		mov	r1, r3
+  98 005a FFF7FEFF 		bl	__aeabi_fdiv
+  99 005e 0346     		mov	r3, r0
+ 100 0060 1846     		mov	r0, r3
+ 101 0062 1949     		ldr	r1, .L4
+ 102 0064 FFF7FEFF 		bl	__aeabi_fmul
+ 103 0068 0346     		mov	r3, r0
+ 104 006a 1846     		mov	r0, r3
+ 105 006c FFF7FEFF 		bl	__aeabi_f2iz
+ 106 0070 0346     		mov	r3, r0
+ 107 0072 BB61     		str	r3, [r7, #24]
+  88:.\main.c      ****         
+  89:.\main.c      ****         /* Use the thermistor component API function call to obtain 
+  90:.\main.c      ****         the temperature corresponding to the resistance measured*/	
+  91:.\main.c      ****     	iTemp = Thermistor_GetTemperature(iRes);
+ 108              		.loc 1 91 0
+ 109 0074 B869     		ldr	r0, [r7, #24]
+ 110 0076 FFF7FEFF 		bl	Thermistor_GetTemperature
+ 111 007a 0346     		mov	r3, r0
+ 112 007c 7B61     		str	r3, [r7, #20]
+  92:.\main.c      ****         
+  93:.\main.c      ****     	/*Display -- For Debug*/	
+  94:.\main.c      **** 
+  95:.\main.c      ****     	/*Determine decimal portion of temperature by dividing temperature by 100*/
+  96:.\main.c      ****         decTemp = iTemp/100;
+ 113              		.loc 1 96 0
+ 114 007e 7B69     		ldr	r3, [r7, #20]
+ 115 0080 124A     		ldr	r2, .L4+4
+ 116 0082 82FB0312 		smull	r1, r2, r2, r3
+ 117 0086 5211     		asrs	r2, r2, #5
+ 118 0088 DB17     		asrs	r3, r3, #31
+ 119 008a D31A     		subs	r3, r2, r3
+ 120 008c 3B61     		str	r3, [r7, #16]
+  97:.\main.c      ****         
+  98:.\main.c      ****         /*Determine fraction portion of temperature by subtracting decimal portion from result*/
+  99:.\main.c      ****         fracTemp = iTemp - (decTemp * 100);
+ 121              		.loc 1 99 0
+ 122 008e 3B69     		ldr	r3, [r7, #16]
+ 123 0090 6FF06302 		mvn	r2, #99
+ 124 0094 02FB03F2 		mul	r2, r2, r3
+ 125 0098 7B69     		ldr	r3, [r7, #20]
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 5
+
+
+ 126 009a 1344     		add	r3, r3, r2
+ 127 009c 7B62     		str	r3, [r7, #36]
+ 100:.\main.c      ****         /*If fractional temperature is negative make it positive*/
+ 101:.\main.c      ****         if(fracTemp < 0)
+ 128              		.loc 1 101 0
+ 129 009e 7B6A     		ldr	r3, [r7, #36]
+ 130 00a0 002B     		cmp	r3, #0
+ 131 00a2 02DA     		bge	.L2
+ 102:.\main.c      ****         {
+ 103:.\main.c      ****             fracTemp *= -1;
+ 132              		.loc 1 103 0
+ 133 00a4 7B6A     		ldr	r3, [r7, #36]
+ 134 00a6 5B42     		negs	r3, r3
+ 135 00a8 7B62     		str	r3, [r7, #36]
+ 136              	.L2:
+ 104:.\main.c      ****         }
+ 105:.\main.c      ****         
+ 106:.\main.c      ****         /*format string to print out over UART*/
+ 107:.\main.c      ****         sprintf(printBuf, "Temp=%ld.%02ld    ", decTemp, fracTemp); 
+ 137              		.loc 1 107 0
+ 138 00aa 3B46     		mov	r3, r7
+ 139 00ac 1846     		mov	r0, r3
+ 140 00ae 0849     		ldr	r1, .L4+8
+ 141 00b0 3A69     		ldr	r2, [r7, #16]
+ 142 00b2 7B6A     		ldr	r3, [r7, #36]
+ 143 00b4 FFF7FEFF 		bl	sprintf
+ 108:.\main.c      **** 		
+ 109:.\main.c      ****         /*Print result over UART*/
+ 110:.\main.c      ****         UART_PutString(printBuf);
+ 144              		.loc 1 110 0
+ 145 00b8 3B46     		mov	r3, r7
+ 146 00ba 1846     		mov	r0, r3
+ 147 00bc FFF7FEFF 		bl	UART_PutString
+ 111:.\main.c      ****         UART_PutString("\n\r");
+ 148              		.loc 1 111 0
+ 149 00c0 0448     		ldr	r0, .L4+12
+ 150 00c2 FFF7FEFF 		bl	UART_PutString
+ 112:.\main.c      ****         
+ 113:.\main.c      ****     }
+ 151              		.loc 1 113 0
+ 152 00c6 B6E7     		b	.L3
+ 153              	.L5:
+ 154              		.align	2
+ 155              	.L4:
+ 156 00c8 00401C46 		.word	1176256512
+ 157 00cc 1F85EB51 		.word	1374389535
+ 158 00d0 00000000 		.word	.LC0
+ 159 00d4 14000000 		.word	.LC1
+ 160              		.cfi_endproc
+ 161              	.LFE63:
+ 162              		.size	main, .-main
+ 163              		.text
+ 164              	.Letext0:
+ 165              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 166              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 167              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 168              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 6
+
+
+ 169              		.section	.debug_info,"",%progbits
+ 170              	.Ldebug_info0:
+ 171 0000 54010000 		.4byte	0x154
+ 172 0004 0400     		.2byte	0x4
+ 173 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 174 000a 04       		.byte	0x4
+ 175 000b 01       		.uleb128 0x1
+ 176 000c 51000000 		.4byte	.LASF25
+ 177 0010 01       		.byte	0x1
+ 178 0011 07010000 		.4byte	.LASF26
+ 179 0015 00000000 		.4byte	.LASF27
+ 180 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 181 001d 00000000 		.4byte	0
+ 182 0021 00000000 		.4byte	.Ldebug_line0
+ 183 0025 02       		.uleb128 0x2
+ 184 0026 01       		.byte	0x1
+ 185 0027 06       		.byte	0x6
+ 186 0028 C6010000 		.4byte	.LASF0
+ 187 002c 02       		.uleb128 0x2
+ 188 002d 01       		.byte	0x1
+ 189 002e 08       		.byte	0x8
+ 190 002f F9000000 		.4byte	.LASF1
+ 191 0033 02       		.uleb128 0x2
+ 192 0034 02       		.byte	0x2
+ 193 0035 05       		.byte	0x5
+ 194 0036 A7010000 		.4byte	.LASF2
+ 195 003a 02       		.uleb128 0x2
+ 196 003b 02       		.byte	0x2
+ 197 003c 07       		.byte	0x7
+ 198 003d D2010000 		.4byte	.LASF3
+ 199 0041 03       		.uleb128 0x3
+ 200 0042 47000000 		.4byte	.LASF9
+ 201 0046 02       		.byte	0x2
+ 202 0047 3F       		.byte	0x3f
+ 203 0048 4C000000 		.4byte	0x4c
+ 204 004c 02       		.uleb128 0x2
+ 205 004d 04       		.byte	0x4
+ 206 004e 05       		.byte	0x5
+ 207 004f B1010000 		.4byte	.LASF4
+ 208 0053 02       		.uleb128 0x2
+ 209 0054 04       		.byte	0x4
+ 210 0055 07       		.byte	0x7
+ 211 0056 47010000 		.4byte	.LASF5
+ 212 005a 02       		.uleb128 0x2
+ 213 005b 08       		.byte	0x8
+ 214 005c 05       		.byte	0x5
+ 215 005d 8E010000 		.4byte	.LASF6
+ 216 0061 02       		.uleb128 0x2
+ 217 0062 08       		.byte	0x8
+ 218 0063 07       		.byte	0x7
+ 219 0064 66010000 		.4byte	.LASF7
+ 220 0068 04       		.uleb128 0x4
+ 221 0069 04       		.byte	0x4
+ 222 006a 05       		.byte	0x5
+ 223 006b 696E7400 		.ascii	"int\000"
+ 224 006f 02       		.uleb128 0x2
+ 225 0070 04       		.byte	0x4
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 7
+
+
+ 226 0071 07       		.byte	0x7
+ 227 0072 59010000 		.4byte	.LASF8
+ 228 0076 03       		.uleb128 0x3
+ 229 0077 7D010000 		.4byte	.LASF10
+ 230 007b 03       		.byte	0x3
+ 231 007c 2C       		.byte	0x2c
+ 232 007d 41000000 		.4byte	0x41
+ 233 0081 03       		.uleb128 0x3
+ 234 0082 40010000 		.4byte	.LASF11
+ 235 0086 04       		.byte	0x4
+ 236 0087 C4       		.byte	0xc4
+ 237 0088 53000000 		.4byte	0x53
+ 238 008c 03       		.uleb128 0x3
+ 239 008d 1F010000 		.4byte	.LASF12
+ 240 0091 04       		.byte	0x4
+ 241 0092 C7       		.byte	0xc7
+ 242 0093 4C000000 		.4byte	0x4c
+ 243 0097 02       		.uleb128 0x2
+ 244 0098 04       		.byte	0x4
+ 245 0099 04       		.byte	0x4
+ 246 009a EB000000 		.4byte	.LASF13
+ 247 009e 02       		.uleb128 0x2
+ 248 009f 08       		.byte	0x8
+ 249 00a0 04       		.byte	0x4
+ 250 00a1 DF000000 		.4byte	.LASF14
+ 251 00a5 02       		.uleb128 0x2
+ 252 00a6 01       		.byte	0x1
+ 253 00a7 08       		.byte	0x8
+ 254 00a8 A2010000 		.4byte	.LASF15
+ 255 00ac 02       		.uleb128 0x2
+ 256 00ad 04       		.byte	0x4
+ 257 00ae 07       		.byte	0x7
+ 258 00af 85010000 		.4byte	.LASF16
+ 259 00b3 02       		.uleb128 0x2
+ 260 00b4 08       		.byte	0x8
+ 261 00b5 04       		.byte	0x4
+ 262 00b6 BA010000 		.4byte	.LASF17
+ 263 00ba 05       		.uleb128 0x5
+ 264 00bb 3B010000 		.4byte	.LASF28
+ 265 00bf 01       		.byte	0x1
+ 266 00c0 2E       		.byte	0x2e
+ 267 00c1 68000000 		.4byte	0x68
+ 268 00c5 00000000 		.4byte	.LFB63
+ 269 00c9 D8000000 		.4byte	.LFE63-.LFB63
+ 270 00cd 01       		.uleb128 0x1
+ 271 00ce 9C       		.byte	0x9c
+ 272 00cf 36010000 		.4byte	0x136
+ 273 00d3 06       		.uleb128 0x6
+ 274 00d4 19010000 		.4byte	.LASF18
+ 275 00d8 01       		.byte	0x1
+ 276 00d9 31       		.byte	0x31
+ 277 00da 8C000000 		.4byte	0x8c
+ 278 00de 02       		.uleb128 0x2
+ 279 00df 91       		.byte	0x91
+ 280 00e0 64       		.sleb128 -28
+ 281 00e1 06       		.uleb128 0x6
+ 282 00e2 E5010000 		.4byte	.LASF19
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 8
+
+
+ 283 00e6 01       		.byte	0x1
+ 284 00e7 31       		.byte	0x31
+ 285 00e8 8C000000 		.4byte	0x8c
+ 286 00ec 02       		.uleb128 0x2
+ 287 00ed 91       		.byte	0x91
+ 288 00ee 68       		.sleb128 -24
+ 289 00ef 06       		.uleb128 0x6
+ 290 00f0 E6000000 		.4byte	.LASF20
+ 291 00f4 01       		.byte	0x1
+ 292 00f5 34       		.byte	0x34
+ 293 00f6 81000000 		.4byte	0x81
+ 294 00fa 02       		.uleb128 0x2
+ 295 00fb 91       		.byte	0x91
+ 296 00fc 60       		.sleb128 -32
+ 297 00fd 06       		.uleb128 0x6
+ 298 00fe 9C010000 		.4byte	.LASF21
+ 299 0102 01       		.byte	0x1
+ 300 0103 37       		.byte	0x37
+ 301 0104 8C000000 		.4byte	0x8c
+ 302 0108 02       		.uleb128 0x2
+ 303 0109 91       		.byte	0x91
+ 304 010a 5C       		.sleb128 -36
+ 305 010b 06       		.uleb128 0x6
+ 306 010c F1000000 		.4byte	.LASF22
+ 307 0110 01       		.byte	0x1
+ 308 0111 3A       		.byte	0x3a
+ 309 0112 8C000000 		.4byte	0x8c
+ 310 0116 02       		.uleb128 0x2
+ 311 0117 91       		.byte	0x91
+ 312 0118 58       		.sleb128 -40
+ 313 0119 06       		.uleb128 0x6
+ 314 011a 10010000 		.4byte	.LASF23
+ 315 011e 01       		.byte	0x1
+ 316 011f 3D       		.byte	0x3d
+ 317 0120 8C000000 		.4byte	0x8c
+ 318 0124 02       		.uleb128 0x2
+ 319 0125 91       		.byte	0x91
+ 320 0126 6C       		.sleb128 -20
+ 321 0127 06       		.uleb128 0x6
+ 322 0128 32010000 		.4byte	.LASF24
+ 323 012c 01       		.byte	0x1
+ 324 012d 40       		.byte	0x40
+ 325 012e 36010000 		.4byte	0x136
+ 326 0132 02       		.uleb128 0x2
+ 327 0133 91       		.byte	0x91
+ 328 0134 48       		.sleb128 -56
+ 329 0135 00       		.byte	0
+ 330 0136 07       		.uleb128 0x7
+ 331 0137 A5000000 		.4byte	0xa5
+ 332 013b 46010000 		.4byte	0x146
+ 333 013f 08       		.uleb128 0x8
+ 334 0140 AC000000 		.4byte	0xac
+ 335 0144 0F       		.byte	0xf
+ 336 0145 00       		.byte	0
+ 337 0146 09       		.uleb128 0x9
+ 338 0147 25010000 		.4byte	.LASF29
+ 339 014b 05       		.byte	0x5
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 9
+
+
+ 340 014c 2A06     		.2byte	0x62a
+ 341 014e 52010000 		.4byte	0x152
+ 342 0152 0A       		.uleb128 0xa
+ 343 0153 76000000 		.4byte	0x76
+ 344 0157 00       		.byte	0
+ 345              		.section	.debug_abbrev,"",%progbits
+ 346              	.Ldebug_abbrev0:
+ 347 0000 01       		.uleb128 0x1
+ 348 0001 11       		.uleb128 0x11
+ 349 0002 01       		.byte	0x1
+ 350 0003 25       		.uleb128 0x25
+ 351 0004 0E       		.uleb128 0xe
+ 352 0005 13       		.uleb128 0x13
+ 353 0006 0B       		.uleb128 0xb
+ 354 0007 03       		.uleb128 0x3
+ 355 0008 0E       		.uleb128 0xe
+ 356 0009 1B       		.uleb128 0x1b
+ 357 000a 0E       		.uleb128 0xe
+ 358 000b 55       		.uleb128 0x55
+ 359 000c 17       		.uleb128 0x17
+ 360 000d 11       		.uleb128 0x11
+ 361 000e 01       		.uleb128 0x1
+ 362 000f 10       		.uleb128 0x10
+ 363 0010 17       		.uleb128 0x17
+ 364 0011 00       		.byte	0
+ 365 0012 00       		.byte	0
+ 366 0013 02       		.uleb128 0x2
+ 367 0014 24       		.uleb128 0x24
+ 368 0015 00       		.byte	0
+ 369 0016 0B       		.uleb128 0xb
+ 370 0017 0B       		.uleb128 0xb
+ 371 0018 3E       		.uleb128 0x3e
+ 372 0019 0B       		.uleb128 0xb
+ 373 001a 03       		.uleb128 0x3
+ 374 001b 0E       		.uleb128 0xe
+ 375 001c 00       		.byte	0
+ 376 001d 00       		.byte	0
+ 377 001e 03       		.uleb128 0x3
+ 378 001f 16       		.uleb128 0x16
+ 379 0020 00       		.byte	0
+ 380 0021 03       		.uleb128 0x3
+ 381 0022 0E       		.uleb128 0xe
+ 382 0023 3A       		.uleb128 0x3a
+ 383 0024 0B       		.uleb128 0xb
+ 384 0025 3B       		.uleb128 0x3b
+ 385 0026 0B       		.uleb128 0xb
+ 386 0027 49       		.uleb128 0x49
+ 387 0028 13       		.uleb128 0x13
+ 388 0029 00       		.byte	0
+ 389 002a 00       		.byte	0
+ 390 002b 04       		.uleb128 0x4
+ 391 002c 24       		.uleb128 0x24
+ 392 002d 00       		.byte	0
+ 393 002e 0B       		.uleb128 0xb
+ 394 002f 0B       		.uleb128 0xb
+ 395 0030 3E       		.uleb128 0x3e
+ 396 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 10
+
+
+ 397 0032 03       		.uleb128 0x3
+ 398 0033 08       		.uleb128 0x8
+ 399 0034 00       		.byte	0
+ 400 0035 00       		.byte	0
+ 401 0036 05       		.uleb128 0x5
+ 402 0037 2E       		.uleb128 0x2e
+ 403 0038 01       		.byte	0x1
+ 404 0039 3F       		.uleb128 0x3f
+ 405 003a 19       		.uleb128 0x19
+ 406 003b 03       		.uleb128 0x3
+ 407 003c 0E       		.uleb128 0xe
+ 408 003d 3A       		.uleb128 0x3a
+ 409 003e 0B       		.uleb128 0xb
+ 410 003f 3B       		.uleb128 0x3b
+ 411 0040 0B       		.uleb128 0xb
+ 412 0041 27       		.uleb128 0x27
+ 413 0042 19       		.uleb128 0x19
+ 414 0043 49       		.uleb128 0x49
+ 415 0044 13       		.uleb128 0x13
+ 416 0045 11       		.uleb128 0x11
+ 417 0046 01       		.uleb128 0x1
+ 418 0047 12       		.uleb128 0x12
+ 419 0048 06       		.uleb128 0x6
+ 420 0049 40       		.uleb128 0x40
+ 421 004a 18       		.uleb128 0x18
+ 422 004b 9642     		.uleb128 0x2116
+ 423 004d 19       		.uleb128 0x19
+ 424 004e 01       		.uleb128 0x1
+ 425 004f 13       		.uleb128 0x13
+ 426 0050 00       		.byte	0
+ 427 0051 00       		.byte	0
+ 428 0052 06       		.uleb128 0x6
+ 429 0053 34       		.uleb128 0x34
+ 430 0054 00       		.byte	0
+ 431 0055 03       		.uleb128 0x3
+ 432 0056 0E       		.uleb128 0xe
+ 433 0057 3A       		.uleb128 0x3a
+ 434 0058 0B       		.uleb128 0xb
+ 435 0059 3B       		.uleb128 0x3b
+ 436 005a 0B       		.uleb128 0xb
+ 437 005b 49       		.uleb128 0x49
+ 438 005c 13       		.uleb128 0x13
+ 439 005d 02       		.uleb128 0x2
+ 440 005e 18       		.uleb128 0x18
+ 441 005f 00       		.byte	0
+ 442 0060 00       		.byte	0
+ 443 0061 07       		.uleb128 0x7
+ 444 0062 01       		.uleb128 0x1
+ 445 0063 01       		.byte	0x1
+ 446 0064 49       		.uleb128 0x49
+ 447 0065 13       		.uleb128 0x13
+ 448 0066 01       		.uleb128 0x1
+ 449 0067 13       		.uleb128 0x13
+ 450 0068 00       		.byte	0
+ 451 0069 00       		.byte	0
+ 452 006a 08       		.uleb128 0x8
+ 453 006b 21       		.uleb128 0x21
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 11
+
+
+ 454 006c 00       		.byte	0
+ 455 006d 49       		.uleb128 0x49
+ 456 006e 13       		.uleb128 0x13
+ 457 006f 2F       		.uleb128 0x2f
+ 458 0070 0B       		.uleb128 0xb
+ 459 0071 00       		.byte	0
+ 460 0072 00       		.byte	0
+ 461 0073 09       		.uleb128 0x9
+ 462 0074 34       		.uleb128 0x34
+ 463 0075 00       		.byte	0
+ 464 0076 03       		.uleb128 0x3
+ 465 0077 0E       		.uleb128 0xe
+ 466 0078 3A       		.uleb128 0x3a
+ 467 0079 0B       		.uleb128 0xb
+ 468 007a 3B       		.uleb128 0x3b
+ 469 007b 05       		.uleb128 0x5
+ 470 007c 49       		.uleb128 0x49
+ 471 007d 13       		.uleb128 0x13
+ 472 007e 3F       		.uleb128 0x3f
+ 473 007f 19       		.uleb128 0x19
+ 474 0080 3C       		.uleb128 0x3c
+ 475 0081 19       		.uleb128 0x19
+ 476 0082 00       		.byte	0
+ 477 0083 00       		.byte	0
+ 478 0084 0A       		.uleb128 0xa
+ 479 0085 35       		.uleb128 0x35
+ 480 0086 00       		.byte	0
+ 481 0087 49       		.uleb128 0x49
+ 482 0088 13       		.uleb128 0x13
+ 483 0089 00       		.byte	0
+ 484 008a 00       		.byte	0
+ 485 008b 00       		.byte	0
+ 486              		.section	.debug_aranges,"",%progbits
+ 487 0000 1C000000 		.4byte	0x1c
+ 488 0004 0200     		.2byte	0x2
+ 489 0006 00000000 		.4byte	.Ldebug_info0
+ 490 000a 04       		.byte	0x4
+ 491 000b 00       		.byte	0
+ 492 000c 0000     		.2byte	0
+ 493 000e 0000     		.2byte	0
+ 494 0010 00000000 		.4byte	.LFB63
+ 495 0014 D8000000 		.4byte	.LFE63-.LFB63
+ 496 0018 00000000 		.4byte	0
+ 497 001c 00000000 		.4byte	0
+ 498              		.section	.debug_ranges,"",%progbits
+ 499              	.Ldebug_ranges0:
+ 500 0000 00000000 		.4byte	.LFB63
+ 501 0004 D8000000 		.4byte	.LFE63
+ 502 0008 00000000 		.4byte	0
+ 503 000c 00000000 		.4byte	0
+ 504              		.section	.debug_line,"",%progbits
+ 505              	.Ldebug_line0:
+ 506 0000 74010000 		.section	.debug_str,"MS",%progbits,1
+ 506      02004901 
+ 506      00000201 
+ 506      FB0E0D00 
+ 506      01010101 
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 12
+
+
+ 507              	.LASF27:
+ 508 0000 433A5C55 		.ascii	"C:\\Users\\nm\\Desktop\\TempSenseExample\\CE210514_"
+ 508      73657273 
+ 508      5C6E6D5C 
+ 508      4465736B 
+ 508      746F705C 
+ 509 002e 50534F43 		.ascii	"PSOC3_5_Thermistor.cydsn\000"
+ 509      335F355F 
+ 509      54686572 
+ 509      6D697374 
+ 509      6F722E63 
+ 510              	.LASF9:
+ 511 0047 5F5F696E 		.ascii	"__int32_t\000"
+ 511      7433325F 
+ 511      7400
+ 512              	.LASF25:
+ 513 0051 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 513      4320342E 
+ 513      392E3320 
+ 513      32303135 
+ 513      30333033 
+ 514 0084 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 514      20726576 
+ 514      6973696F 
+ 514      6E203232 
+ 514      31323230 
+ 515 00b7 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 515      66756E63 
+ 515      74696F6E 
+ 515      2D736563 
+ 515      74696F6E 
+ 516              	.LASF14:
+ 517 00df 646F7562 		.ascii	"double\000"
+ 517      6C6500
+ 518              	.LASF20:
+ 519 00e6 69526573 		.ascii	"iRes\000"
+ 519      00
+ 520              	.LASF13:
+ 521 00eb 666C6F61 		.ascii	"float\000"
+ 521      7400
+ 522              	.LASF22:
+ 523 00f1 64656354 		.ascii	"decTemp\000"
+ 523      656D7000 
+ 524              	.LASF1:
+ 525 00f9 756E7369 		.ascii	"unsigned char\000"
+ 525      676E6564 
+ 525      20636861 
+ 525      7200
+ 526              	.LASF26:
+ 527 0107 2E5C6D61 		.ascii	".\\main.c\000"
+ 527      696E2E63 
+ 527      00
+ 528              	.LASF23:
+ 529 0110 66726163 		.ascii	"fracTemp\000"
+ 529      54656D70 
+ 529      00
+ 530              	.LASF18:
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 13
+
+
+ 531 0119 69567265 		.ascii	"iVref\000"
+ 531      6600
+ 532              	.LASF12:
+ 533 011f 696E7433 		.ascii	"int32\000"
+ 533      3200
+ 534              	.LASF29:
+ 535 0125 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 535      52784275 
+ 535      66666572 
+ 535      00
+ 536              	.LASF24:
+ 537 0132 7072696E 		.ascii	"printBuf\000"
+ 537      74427566 
+ 537      00
+ 538              	.LASF28:
+ 539 013b 6D61696E 		.ascii	"main\000"
+ 539      00
+ 540              	.LASF11:
+ 541 0140 75696E74 		.ascii	"uint32\000"
+ 541      333200
+ 542              	.LASF5:
+ 543 0147 6C6F6E67 		.ascii	"long unsigned int\000"
+ 543      20756E73 
+ 543      69676E65 
+ 543      6420696E 
+ 543      7400
+ 544              	.LASF8:
+ 545 0159 756E7369 		.ascii	"unsigned int\000"
+ 545      676E6564 
+ 545      20696E74 
+ 545      00
+ 546              	.LASF7:
+ 547 0166 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 547      206C6F6E 
+ 547      6720756E 
+ 547      7369676E 
+ 547      65642069 
+ 548              	.LASF10:
+ 549 017d 696E7433 		.ascii	"int32_t\000"
+ 549      325F7400 
+ 550              	.LASF16:
+ 551 0185 73697A65 		.ascii	"sizetype\000"
+ 551      74797065 
+ 551      00
+ 552              	.LASF6:
+ 553 018e 6C6F6E67 		.ascii	"long long int\000"
+ 553      206C6F6E 
+ 553      6720696E 
+ 553      7400
+ 554              	.LASF21:
+ 555 019c 6954656D 		.ascii	"iTemp\000"
+ 555      7000
+ 556              	.LASF15:
+ 557 01a2 63686172 		.ascii	"char\000"
+ 557      00
+ 558              	.LASF2:
+ 559 01a7 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccqTHbWq.s 			page 14
+
+
+ 559      7420696E 
+ 559      7400
+ 560              	.LASF4:
+ 561 01b1 6C6F6E67 		.ascii	"long int\000"
+ 561      20696E74 
+ 561      00
+ 562              	.LASF17:
+ 563 01ba 6C6F6E67 		.ascii	"long double\000"
+ 563      20646F75 
+ 563      626C6500 
+ 564              	.LASF0:
+ 565 01c6 7369676E 		.ascii	"signed char\000"
+ 565      65642063 
+ 565      68617200 
+ 566              	.LASF3:
+ 567 01d2 73686F72 		.ascii	"short unsigned int\000"
+ 567      7420756E 
+ 567      7369676E 
+ 567      65642069 
+ 567      6E7400
+ 568              	.LASF19:
+ 569 01e5 69567468 		.ascii	"iVtherm\000"
+ 569      65726D00 
+ 570              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

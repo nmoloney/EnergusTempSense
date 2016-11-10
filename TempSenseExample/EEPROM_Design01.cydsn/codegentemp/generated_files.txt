@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="us-ascii"?>
+
+<fileSet version="1" anchorPath="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp" xsi:schemaLocation="http://cypress.com/xsd/cypathdictionary cypathdictionary.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://cypress.com/xsd/cypathdictionary">
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyfitter_cfg.h" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyfitter_cfg.c" value="DP8051_C_FILE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\config.hex" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\protect.hex" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\eeprom.hex" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cydevice.h" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cydevicekeil.inc" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cydevice_trm.h" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cydevicekeil_trm.inc" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyfitterkeil.inc" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyfitter.h" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cydisabledsheets.h" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD.c" value="DP8051_C_FILE;LCD" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD.h" value="NONE;LCD" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD_PM.c" value="DP8051_C_FILE;LCD" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\EEPROM.c" value="DP8051_C_FILE;EEPROM" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\EEPROM.h" value="NONE;EEPROM" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED_BUSY.c" value="DP8051_C_FILE;LED_BUSY" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED_BUSY.h" value="NONE;LED_BUSY" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED_BUSY_aliases.h" value="NONE;LED_BUSY" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\Reset_CNT.c" value="DP8051_C_FILE;Reset_CNT" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\Reset_CNT.h" value="NONE;Reset_CNT" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\Reset_CNT_aliases.h" value="NONE;Reset_CNT" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED.c" value="DP8051_C_FILE;LED" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED.h" value="NONE;LED" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LED_aliases.h" value="NONE;LED" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD_LCDPort.c" value="DP8051_C_FILE;LCD_LCDPort" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD_LCDPort.h" value="NONE;LCD_LCDPort" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\LCD_LCDPort_aliases.h" value="NONE;LCD_LCDPort" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cycodeshareimport.ld" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cycodeshareexport.ld" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cycodeshareimport.scat" value="NONE;" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyBootAsmKeil.a51" value="KEIL_8051_ASM_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyDmac.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyDmac.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyFlash.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyFlash.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyLib.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CyLib.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cymem.a51" value="KEIL_8051_ASM_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cypins.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyPm.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyPm.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CySpc.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\CySpc.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cytypes.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\cyutils.c" value="DP8051_C_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\KeilStart.a51" value="KEIL_8051_ASM_FILE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\PSoC3_8051.h" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\PSoC3_8051.inc" value="NONE;cy_boot" />
+  <file name="C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\codegentemp\project.h" value="NONE;" />
+</fileSet>

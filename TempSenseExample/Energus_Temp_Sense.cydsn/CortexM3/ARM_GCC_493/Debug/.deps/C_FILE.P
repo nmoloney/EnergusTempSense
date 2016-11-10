@@ -1,0 +1,76 @@
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/CortexM3/ARM_GCC_493/Debug/main.o : C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_FinalBuf_dma.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_IRQ.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_IntClock.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR_Bypass.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR_Bypass_aliases.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_TempBuf_dma.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CYDMAC.H C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CYFITTER.H C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/EEPROM_1.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_1.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_2.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_2_aliases.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_3.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_3_aliases.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/UART.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/UART_IntClock.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cmFunc.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cmInstr.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/project.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/device.h C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/main.c C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/measurement.h 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_FinalBuf_dma.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_IRQ.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_IntClock.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR_Bypass.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_SAR_Bypass_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/ADC_SAR_Seq_1_TempBuf_dma.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CYDMAC.H : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CYFITTER.H : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/EEPROM_1.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_1.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_1_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_2.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_2_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_3.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/Pin_3_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/UART.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/UART_IntClock.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cmFunc.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/core_cmInstr.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/Generated_Source/PSoC5/project.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/device.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/main.c : 
+
+C:/Users/nm/Desktop/TempSenseExample/Energus_Temp_Sense.cydsn/measurement.h : 
+

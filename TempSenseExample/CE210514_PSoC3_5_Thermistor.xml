@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Name="CE210514_PSoC3_5_Thermistor" WorkspaceName="CE210514.cywrk">
+ <Version>3.00</Version>
+ <Keyword>ADC_DelSig</Keyword> 
+ <Keyword>Delta Sigma ADC</Keyword> 
+ <Keyword>IDAC</Keyword>
+ <Keyword>Current DAC</Keyword>
+ <Keyword>Thermistor</Keyword> 
+ <Keyword>Thermistor Calculator</Keyword> 
+ <Keyword>Temperature</Keyword> 
+ <Keyword>CY8CKIT-025</Keyword> 
+ <Keyword Hidden="true">CY8CKIT-030</Keyword>
+ <Keyword Hidden="true">CY8CKIT-050</Keyword>
+ <Description>This example demonstrates how to use PSoC 3, or PSoC 5LP to measure temperature using a Thermistor.</Description>
+ <DeviceFilter>PSoC 3</DeviceFilter>
+ <DeviceFilter>PSoC 5LP</DeviceFilter>
+ <Document>CE210514.pdf</Document>
+ <MinToolVersion>3.3.0.410</MinToolVersion>
+</Project>

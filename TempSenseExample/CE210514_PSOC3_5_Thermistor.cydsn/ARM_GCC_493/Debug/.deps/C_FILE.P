@@ -1,0 +1,84 @@
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/ARM_GCC_493/Debug/main.o : C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_IRQ.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/AMux.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Opamp.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Thermistor.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART_IntClock.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/VDAC8.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmFunc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmInstr.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/project.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/device.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/main.c C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.h 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_IRQ.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_theACLK.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/AMux.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyDmac.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyFlash.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyLib.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CySpc.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Opamp.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Thermistor.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART_IntClock.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/VDAC8.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm_aliases.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmFunc.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmInstr.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyPm.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice_trm.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cypins.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cytypes.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/project.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/device.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/main.c : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.h : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/ARM_GCC_493/Debug/measurement.o : C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_IRQ.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/AMux.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Opamp.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Thermistor.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART_IntClock.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/VDAC8.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmFunc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmInstr.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/project.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/device.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.c C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.h 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.c : 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/ARM_GCC_493/Debug/removeOffsetNoise.o : C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_Ext_CP_Clk.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_IRQ.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/ADC_theACLK.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/AMux.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyDmac.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyFlash.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CyLib.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/CySpc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Opamp.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Thermistor.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/UART_IntClock.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/VDAC8.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vhi_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vlow_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/Vtherm_aliases.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cm3_psoc5.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmFunc.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/core_cmInstr.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyPm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydevice_trm.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cydisabledsheets.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cyfitter_cfg.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cypins.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/cytypes.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/Generated_Source/PSoC5/project.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/device.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/measurement.h C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.c C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.h 
+
+C:/Users/nm/Desktop/TempSenseExample/CE210514_PSOC3_5_Thermistor.cydsn/removeOffsetNoise.c : 
+

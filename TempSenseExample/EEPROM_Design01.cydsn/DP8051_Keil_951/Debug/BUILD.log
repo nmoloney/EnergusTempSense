@@ -1,0 +1,71 @@
+--------------- Build Started: 10/31/2016 12:08:03 Project: EEPROM_Design01, Configuration: DP8051 Keil 9.51 Debug ---------------
+cydsfit.exe -.appdatapath "C:\Users\nm\AppData\Local\Cypress Semiconductor\PSoC Creator\3.3" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -p C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\EEPROM_Design01.cyprj -d CY8C3866AXI-040 -s C:\Users\nm\Desktop\TempSenseExample\EEPROM_Design01.cydsn\Generated_Source\PSoC3 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=BE
+Elaborating Design...
+HDL Generation ...
+Synthesis ...
+Place and Route ...
+Tech mapping ...
+Analog Placement ...
+Analog Routing ...
+Analog Code Generation ...
+Digital Placement ...
+Digital Routing ...
+Bitstream Generation ...
+Static timing analysis ...
+API Generation ...
+Dependency Generation ...
+Clean Temporary Files ...
+c51.exe .\main.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/main.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\main.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\main.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\cyfitter_cfg.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/cyfitter_cfg.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\cyfitter_cfg.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\cyfitter_cfg.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\LCD.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/LCD.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\LCD.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\LCD.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\LCD_PM.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/LCD_PM.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\LCD_PM.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\LCD_PM.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\EEPROM.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/EEPROM.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\EEPROM.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\EEPROM.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\LED_BUSY.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/LED_BUSY.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\LED_BUSY.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\LED_BUSY.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\Reset_CNT.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/Reset_CNT.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\Reset_CNT.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\Reset_CNT.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\LED.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/LED.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\LED.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\LED.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\LCD_LCDPort.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/LCD_LCDPort.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\LCD_LCDPort.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\LCD_LCDPort.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+Ax51.exe .\Generated_Source\PSoC3\CyBootAsmKeil.a51 CASE EP "INCDIR(., Generated_Source\PSoC3)" DB MACRO NOCO PR(.\DP8051_Keil_951\Debug/CyBootAsmKeil.lst) OJ(.\DP8051_Keil_951\Debug\CyBootAsmKeil.obj)
+c51.exe .\Generated_Source\PSoC3\CyDmac.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/CyDmac.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\CyDmac.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\CyDmac.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\CyFlash.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/CyFlash.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\CyFlash.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\CyFlash.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\CyLib.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/CyLib.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\CyLib.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\CyLib.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+Ax51.exe .\Generated_Source\PSoC3\cymem.a51 CASE EP "INCDIR(., Generated_Source\PSoC3)" DB MACRO NOCO PR(.\DP8051_Keil_951\Debug/cymem.lst) OJ(.\DP8051_Keil_951\Debug\cymem.obj)
+c51.exe .\Generated_Source\PSoC3\cyPm.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/cyPm.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\cyPm.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\cyPm.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\CySpc.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/CySpc.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\CySpc.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\CySpc.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+c51.exe .\Generated_Source\PSoC3\cyutils.c NOIV LARGE MODDP2 OMF2 VB(1) NOIP "INCDIR(., Generated_Source\PSoC3)" FF(3) DB WL(2) PR(.\DP8051_Keil_951\Debug/cyutils.lst) CD OT(3 ,Speed) OJ(.\DP8051_Keil_951\Debug\cyutils.obj)
+ERROR: Keil License expired. Obtain a valid Keil license and update the information through your installed version of Keil or in PSoC Creator.
+WARNING: .\Generated_Source\PSoC3\cyutils.c:1: INCORRECT LICENSE ID CODE (LIC) IN 'TOOLS.INI'
+Ax51.exe .\Generated_Source\PSoC3\KeilStart.a51 CASE EP "INCDIR(., Generated_Source\PSoC3)" DB MACRO NOCO PR(.\DP8051_Keil_951\Debug/KeilStart.lst) OJ(.\DP8051_Keil_951\Debug\KeilStart.obj)
+LIBX51.exe TRANSFER '.\DP8051_Keil_951\Debug\cyfitter_cfg.obj', '.\DP8051_Keil_951\Debug\LCD.obj', '.\DP8051_Keil_951\Debug\LCD_PM.obj', '.\DP8051_Keil_951\Debug\EEPROM.obj', '.\DP8051_Keil_951\Debug\LED_BUSY.obj', '.\DP8051_Keil_951\Debug\Reset_CNT.obj', '.\DP8051_Keil_951\Debug\LED.obj', '.\DP8051_Keil_951\Debug\LCD_LCDPort.obj', '.\DP8051_Keil_951\Debug\CyBootAsmKeil.obj', '.\DP8051_Keil_951\Debug\CyDmac.obj', '.\DP8051_Keil_951\Debug\CyFlash.obj', '.\DP8051_Keil_951\Debug\CyLib.obj', '.\DP8051_Keil_951\Debug\cymem.obj', '.\DP8051_Keil_951\Debug\cyPm.obj', '.\DP8051_Keil_951\Debug\CySpc.obj', '.\DP8051_Keil_951\Debug\cyutils.obj', '.\DP8051_Keil_951\Debug\KeilStart.obj' TO '.\DP8051_Keil_951\Debug\EEPROM_Design01.lib'
+*** ERROR 210: I/O ERROR ON INPUT FILE:
+    EXCEPTION 0021H: PATH OR FILE NOT FOUND
+    FILE:    .\DP8051_Keil_951\Debug\cyfitter_cfg.obj
+The command 'LIBX51.exe' failed with exit code '3'.
+--------------- Build Failed: 10/31/2016 12:08:38 ---------------

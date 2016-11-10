@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Name="CE210514_PSoC4_Thermistor" WorkspaceName="CE210514.cywrk">
+ <Version>3.00</Version>
+ <Keyword>ADC_SAR</Keyword> 
+ <Keyword>Sequencing SAR ADC</Keyword> 
+ <Keyword>IDAC</Keyword>
+ <Keyword>Current DAC</Keyword>
+ <Keyword>Thermistor</Keyword> 
+ <Keyword>Thermistor Calculator</Keyword> 
+ <Keyword>Temperature</Keyword> 
+ <Keyword>CY8CKIT-025</Keyword> 
+ <Keyword Hidden="true">CY8CKIT-042</Keyword>
+ <Keyword Hidden="true">CY8CKIT-019</Keyword>
+ <Description>This example demonstrates how to use PSoC 4 to measure temperature using a Thermistor.</Description>
+ <DeviceFilter>PSoC 4100</DeviceFilter>
+ <DeviceFilter>PSoC 4200</DeviceFilter>
+ <DeviceFilter>PSoC 4100M</DeviceFilter>
+ <DeviceFilter>PSoC 42000M</DeviceFilter>
+ <DeviceFilter>PSoC 4100 BLE</DeviceFilter>
+ <DeviceFilter>PSoC 4200 BLE</DeviceFilter>
+ <Document>CE210514.pdf</Document>
+ <MinToolVersion>3.3.0.410</MinToolVersion>
+</Project>

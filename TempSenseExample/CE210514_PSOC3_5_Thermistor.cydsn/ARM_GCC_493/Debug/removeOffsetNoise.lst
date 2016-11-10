@@ -1,0 +1,869 @@
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"removeOffsetNoise.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.FilterSignal,"ax",%progbits
+  19              		.align	2
+  20              		.global	FilterSignal
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	FilterSignal, %function
+  24              	FilterSignal:
+  25              	.LFB63:
+  26              		.file 1 ".\\removeOffsetNoise.c"
+   1:.\removeOffsetNoise.c **** /******************************************************************************
+   2:.\removeOffsetNoise.c **** * File Name: removeOffsetNoise.c
+   3:.\removeOffsetNoise.c **** *  Version 2.0
+   4:.\removeOffsetNoise.c **** *
+   5:.\removeOffsetNoise.c **** * Description:
+   6:.\removeOffsetNoise.c **** *  This file contains the functions that are used to find offset and perform 
+   7:.\removeOffsetNoise.c **** *  IIR filter
+   8:.\removeOffsetNoise.c **** *
+   9:.\removeOffsetNoise.c **** * Note:
+  10:.\removeOffsetNoise.c **** *
+  11:.\removeOffsetNoise.c **** ********************************************************************************
+  12:.\removeOffsetNoise.c **** * Copyright (2015), Cypress Semiconductor Corporation. All Rights Reserved.
+  13:.\removeOffsetNoise.c **** ********************************************************************************
+  14:.\removeOffsetNoise.c **** * This software is owned by Cypress Semiconductor Corporation (Cypress)
+  15:.\removeOffsetNoise.c **** * and is protected by and subject to worldwide patent protection (United
+  16:.\removeOffsetNoise.c **** * States and foreign), United States copyright laws and international treaty
+  17:.\removeOffsetNoise.c **** * provisions. Cypress hereby grants to licensee a personal, non-exclusive,
+  18:.\removeOffsetNoise.c **** * non-transferable license to copy, use, modify, create derivative works of,
+  19:.\removeOffsetNoise.c **** * and compile the Cypress Source Code and derivative works for the sole
+  20:.\removeOffsetNoise.c **** * purpose of creating custom software in support of licensee product to be
+  21:.\removeOffsetNoise.c **** * used only in conjunction with a Cypress integrated circuit as specified in
+  22:.\removeOffsetNoise.c **** * the applicable agreement. Any reproduction, modification, translation,
+  23:.\removeOffsetNoise.c **** * compilation, or representation of this software except as specified above 
+  24:.\removeOffsetNoise.c **** * is prohibited without the express written permission of Cypress.
+  25:.\removeOffsetNoise.c **** *
+  26:.\removeOffsetNoise.c **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH 
+  27:.\removeOffsetNoise.c **** * REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  28:.\removeOffsetNoise.c **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  29:.\removeOffsetNoise.c **** * Cypress reserves the right to make changes without further notice to the 
+  30:.\removeOffsetNoise.c **** * materials described herein. Cypress does not assume any liability arising out 
+  31:.\removeOffsetNoise.c **** * of the application or use of any product or circuit described herein. Cypress 
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 2
+
+
+  32:.\removeOffsetNoise.c **** * does not authorize its products for use as critical components in life-support 
+  33:.\removeOffsetNoise.c **** * systems where a malfunction or failure may reasonably be expected to result in 
+  34:.\removeOffsetNoise.c **** * significant injury to the user. The inclusion of Cypress' product in a life-
+  35:.\removeOffsetNoise.c **** * support systems application implies that the manufacturer assumes all risk of 
+  36:.\removeOffsetNoise.c **** * such use and in doing so indemnifies Cypress against all charges. 
+  37:.\removeOffsetNoise.c **** *
+  38:.\removeOffsetNoise.c **** * Use of this Software may be limited by and subject to the applicable Cypress
+  39:.\removeOffsetNoise.c **** * software license agreement. 
+  40:.\removeOffsetNoise.c **** *******************************************************************************/
+  41:.\removeOffsetNoise.c **** #include "removeOffsetNoise.h"
+  42:.\removeOffsetNoise.c **** #include "measurement.h"
+  43:.\removeOffsetNoise.c **** #include <device.h>
+  44:.\removeOffsetNoise.c **** 
+  45:.\removeOffsetNoise.c **** /*******************************************************************************
+  46:.\removeOffsetNoise.c **** *  Function Name: FilterSignal
+  47:.\removeOffsetNoise.c **** ********************************************************************************
+  48:.\removeOffsetNoise.c **** * Summary:
+  49:.\removeOffsetNoise.c **** *  This is IIR filter to process the sampled ADC data. For first sample passed 
+  50:.\removeOffsetNoise.c **** *  the function simply returns the passed ADC sample. for second sample onwards,
+  51:.\removeOffsetNoise.c **** *  Fraction of input signal based upon the filter coefficient, is calculated and 
+  52:.\removeOffsetNoise.c **** *  added to the previously stored filtered value.
+  53:.\removeOffsetNoise.c **** *
+  54:.\removeOffsetNoise.c **** * Parameters:
+  55:.\removeOffsetNoise.c **** * (int32)  ADCSample       - ADC sample read for given signal
+  56:.\removeOffsetNoise.c **** * (uint8)  Sensor		   - Sensor to be Filtered
+  57:.\removeOffsetNoise.c **** *
+  58:.\removeOffsetNoise.c **** * Return: 
+  59:.\removeOffsetNoise.c **** * (int32)filValueRounded - filtered value passed is updated after applying 
+  60:.\removeOffsetNoise.c **** * IIR filter to the ADC sample.
+  61:.\removeOffsetNoise.c **** *
+  62:.\removeOffsetNoise.c **** * Theory:
+  63:.\removeOffsetNoise.c **** * For more information on the IIR filter please refer to Cypress application
+  64:.\removeOffsetNoise.c **** * note AN2099.
+  65:.\removeOffsetNoise.c **** *
+  66:.\removeOffsetNoise.c **** * Side Effects:
+  67:.\removeOffsetNoise.c **** * None
+  68:.\removeOffsetNoise.c **** *******************************************************************************/
+  69:.\removeOffsetNoise.c **** int32 FilterSignal(int32 ADCSample, uint8 sensor)
+  70:.\removeOffsetNoise.c **** {
+  27              		.loc 1 70 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 16
+  30              		@ frame_needed = 1, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32 0000 80B4     		push	{r7}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 7, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              		.cfi_def_cfa_offset 24
+  37 0004 00AF     		add	r7, sp, #0
+  38              		.cfi_def_cfa_register 7
+  39 0006 7860     		str	r0, [r7, #4]
+  40 0008 0B46     		mov	r3, r1
+  41 000a FB70     		strb	r3, [r7, #3]
+  71:.\removeOffsetNoise.c **** 	/* Running filtered value accumulator */
+  72:.\removeOffsetNoise.c **** 	static int32 filteredValue[NUM_SENSORS] = {0,0};
+  73:.\removeOffsetNoise.c **** 	
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 3
+
+
+  74:.\removeOffsetNoise.c **** 	/* Filtered value rounded-off to 20-bits */
+  75:.\removeOffsetNoise.c **** 	int32 filValueRounded;
+  76:.\removeOffsetNoise.c **** 	
+  77:.\removeOffsetNoise.c **** 	/* Left shift input by MAX_FILTER_COEFF_SHIFT to allow divisions up to MAX_FILTER_COEFF_SHIFT */
+  78:.\removeOffsetNoise.c **** 	ADCSample <<= MAX_FILTER_COEFF_SHIFT;
+  42              		.loc 1 78 0
+  43 000c 7B68     		ldr	r3, [r7, #4]
+  44 000e 1B02     		lsls	r3, r3, #8
+  45 0010 7B60     		str	r3, [r7, #4]
+  79:.\removeOffsetNoise.c **** 	   
+  80:.\removeOffsetNoise.c **** 	/* Pass the filter input as it is for fast changes in input */
+  81:.\removeOffsetNoise.c ****     if ( (ADCSample > (filteredValue[sensor] + FILTER_FEEDFORWARD)) || (ADCSample < (filteredValue[
+  46              		.loc 1 81 0
+  47 0012 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  48 0014 1D4A     		ldr	r2, .L6
+  49 0016 52F82330 		ldr	r3, [r2, r3, lsl #2]
+  50 001a 03F54852 		add	r2, r3, #12800
+  51 001e 7B68     		ldr	r3, [r7, #4]
+  52 0020 9A42     		cmp	r2, r3
+  53 0022 08DB     		blt	.L2
+  54              		.loc 1 81 0 is_stmt 0 discriminator 1
+  55 0024 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  56 0026 194A     		ldr	r2, .L6
+  57 0028 52F82330 		ldr	r3, [r2, r3, lsl #2]
+  58 002c A3F54852 		sub	r2, r3, #12800
+  59 0030 7B68     		ldr	r3, [r7, #4]
+  60 0032 9A42     		cmp	r2, r3
+  61 0034 05DD     		ble	.L3
+  62              	.L2:
+  82:.\removeOffsetNoise.c ****     {
+  83:.\removeOffsetNoise.c ****         filteredValue[sensor] = ADCSample;
+  63              		.loc 1 83 0 is_stmt 1
+  64 0036 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  65 0038 1449     		ldr	r1, .L6
+  66 003a 7A68     		ldr	r2, [r7, #4]
+  67 003c 41F82320 		str	r2, [r1, r3, lsl #2]
+  68 0040 0EE0     		b	.L4
+  69              	.L3:
+  84:.\removeOffsetNoise.c ****     }
+  85:.\removeOffsetNoise.c ****     
+  86:.\removeOffsetNoise.c ****     /* If not the first sample then based on filter coefficient, filter the 
+  87:.\removeOffsetNoise.c ****      * input signal */
+  88:.\removeOffsetNoise.c ****     else
+  89:.\removeOffsetNoise.c ****     {
+  90:.\removeOffsetNoise.c **** 		/* IIR filter */
+  91:.\removeOffsetNoise.c **** 		filteredValue[sensor] = filteredValue[sensor] + ((ADCSample - filteredValue[sensor]) >> RTD_FILTE
+  70              		.loc 1 91 0
+  71 0042 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  72 0044 FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+  73 0046 1149     		ldr	r1, .L6
+  74 0048 51F82210 		ldr	r1, [r1, r2, lsl #2]
+  75 004c FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
+  76 004e 0F48     		ldr	r0, .L6
+  77 0050 50F82220 		ldr	r2, [r0, r2, lsl #2]
+  78 0054 7868     		ldr	r0, [r7, #4]
+  79 0056 821A     		subs	r2, r0, r2
+  80 0058 0A44     		add	r2, r2, r1
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 4
+
+
+  81 005a 0C49     		ldr	r1, .L6
+  82 005c 41F82320 		str	r2, [r1, r3, lsl #2]
+  83              	.L4:
+  92:.\removeOffsetNoise.c **** 	}
+  93:.\removeOffsetNoise.c **** 	
+  94:.\removeOffsetNoise.c **** 	/* Compensate filter result for  left shift of 8 and round off */
+  95:.\removeOffsetNoise.c **** 	filValueRounded = (filteredValue[sensor] >> MAX_FILTER_COEFF_SHIFT) + ((filteredValue[sensor] & 0x
+  84              		.loc 1 95 0
+  85 0060 FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  86 0062 0A4A     		ldr	r2, .L6
+  87 0064 52F82330 		ldr	r3, [r2, r3, lsl #2]
+  88 0068 1A12     		asrs	r2, r3, #8
+  89 006a FB78     		ldrb	r3, [r7, #3]	@ zero_extendqisi2
+  90 006c 0749     		ldr	r1, .L6
+  91 006e 51F82330 		ldr	r3, [r1, r3, lsl #2]
+  92 0072 03F08003 		and	r3, r3, #128
+  93 0076 DB11     		asrs	r3, r3, #7
+  94 0078 1344     		add	r3, r3, r2
+  95 007a FB60     		str	r3, [r7, #12]
+  96:.\removeOffsetNoise.c **** 	
+  97:.\removeOffsetNoise.c ****     return filValueRounded;
+  96              		.loc 1 97 0
+  97 007c FB68     		ldr	r3, [r7, #12]
+  98:.\removeOffsetNoise.c **** }
+  98              		.loc 1 98 0
+  99 007e 1846     		mov	r0, r3
+ 100 0080 1437     		adds	r7, r7, #20
+ 101              		.cfi_def_cfa_offset 4
+ 102 0082 BD46     		mov	sp, r7
+ 103              		.cfi_def_cfa_register 13
+ 104              		@ sp needed
+ 105 0084 5DF8047B 		ldr	r7, [sp], #4
+ 106              		.cfi_restore 7
+ 107              		.cfi_def_cfa_offset 0
+ 108 0088 7047     		bx	lr
+ 109              	.L7:
+ 110 008a 00BF     		.align	2
+ 111              	.L6:
+ 112 008c 00000000 		.word	filteredValue.6192
+ 113              		.cfi_endproc
+ 114              	.LFE63:
+ 115              		.size	FilterSignal, .-FilterSignal
+ 116              		.section	.text.GetOffset,"ax",%progbits
+ 117              		.align	2
+ 118              		.global	GetOffset
+ 119              		.thumb
+ 120              		.thumb_func
+ 121              		.type	GetOffset, %function
+ 122              	GetOffset:
+ 123              	.LFB64:
+  99:.\removeOffsetNoise.c **** 
+ 100:.\removeOffsetNoise.c **** /*******************************************************************************
+ 101:.\removeOffsetNoise.c **** *  Function Name: GetOffset
+ 102:.\removeOffsetNoise.c **** ********************************************************************************
+ 103:.\removeOffsetNoise.c **** * Summary:
+ 104:.\removeOffsetNoise.c **** * This function shorts the inputs of the ADC together and reads the offset. 
+ 105:.\removeOffsetNoise.c **** *
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 5
+
+
+ 106:.\removeOffsetNoise.c **** * Parameters:
+ 107:.\removeOffsetNoise.c **** * void:
+ 108:.\removeOffsetNoise.c **** *
+ 109:.\removeOffsetNoise.c **** * Return:
+ 110:.\removeOffsetNoise.c **** * int32: result (offset value).
+ 111:.\removeOffsetNoise.c **** *
+ 112:.\removeOffsetNoise.c **** * Theory:
+ 113:.\removeOffsetNoise.c **** *
+ 114:.\removeOffsetNoise.c **** * Side Effects:
+ 115:.\removeOffsetNoise.c **** * None
+ 116:.\removeOffsetNoise.c **** *******************************************************************************/
+ 117:.\removeOffsetNoise.c **** int32 GetOffset(void)
+ 118:.\removeOffsetNoise.c **** {
+ 124              		.loc 1 118 0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 8
+ 127              		@ frame_needed = 1, uses_anonymous_args = 0
+ 128 0000 80B5     		push	{r7, lr}
+ 129              		.cfi_def_cfa_offset 8
+ 130              		.cfi_offset 7, -8
+ 131              		.cfi_offset 14, -4
+ 132 0002 82B0     		sub	sp, sp, #8
+ 133              		.cfi_def_cfa_offset 16
+ 134 0004 00AF     		add	r7, sp, #0
+ 135              		.cfi_def_cfa_register 7
+ 119:.\removeOffsetNoise.c **** 	int32 result;
+ 120:.\removeOffsetNoise.c **** 
+ 121:.\removeOffsetNoise.c ****   	/*Select the MUX channel and Measure the offset voltage*/	
+ 122:.\removeOffsetNoise.c **** 	AMux_FastSelect(AMUX_1_CDS);
+ 136              		.loc 1 122 0
+ 137 0006 0220     		movs	r0, #2
+ 138 0008 FFF7FEFF 		bl	AMux_FastSelect
+ 123:.\removeOffsetNoise.c ****     ADC_StartConvert();
+ 139              		.loc 1 123 0
+ 140 000c FFF7FEFF 		bl	ADC_StartConvert
+ 124:.\removeOffsetNoise.c **** 	ADC_IsEndConversion(ADC_WAIT_FOR_RESULT);
+ 141              		.loc 1 124 0
+ 142 0010 0020     		movs	r0, #0
+ 143 0012 FFF7FEFF 		bl	ADC_IsEndConversion
+ 125:.\removeOffsetNoise.c **** 	result = ADC_GetResult32();
+ 144              		.loc 1 125 0
+ 145 0016 FFF7FEFF 		bl	ADC_GetResult32
+ 146 001a 7860     		str	r0, [r7, #4]
+ 126:.\removeOffsetNoise.c **** 
+ 127:.\removeOffsetNoise.c ****     return result;
+ 147              		.loc 1 127 0
+ 148 001c 7B68     		ldr	r3, [r7, #4]
+ 128:.\removeOffsetNoise.c **** }
+ 149              		.loc 1 128 0
+ 150 001e 1846     		mov	r0, r3
+ 151 0020 0837     		adds	r7, r7, #8
+ 152              		.cfi_def_cfa_offset 8
+ 153 0022 BD46     		mov	sp, r7
+ 154              		.cfi_def_cfa_register 13
+ 155              		@ sp needed
+ 156 0024 80BD     		pop	{r7, pc}
+ 157              		.cfi_endproc
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 6
+
+
+ 158              	.LFE64:
+ 159              		.size	GetOffset, .-GetOffset
+ 160 0026 00BF     		.bss
+ 161              		.align	2
+ 162              	filteredValue.6192:
+ 163 0000 00000000 		.space	8
+ 163      00000000 
+ 164              		.text
+ 165              	.Letext0:
+ 166              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 167              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.3\\psoc creator\\import\\gnu\\arm\\4.9.
+ 168              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 169              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 170              		.section	.debug_info,"",%progbits
+ 171              	.Ldebug_info0:
+ 172 0000 55010000 		.4byte	0x155
+ 173 0004 0400     		.2byte	0x4
+ 174 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 175 000a 04       		.byte	0x4
+ 176 000b 01       		.uleb128 0x1
+ 177 000c 1A010000 		.4byte	.LASF25
+ 178 0010 01       		.byte	0x1
+ 179 0011 D2000000 		.4byte	.LASF26
+ 180 0015 84000000 		.4byte	.LASF27
+ 181 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 182 001d 00000000 		.4byte	0
+ 183 0021 00000000 		.4byte	.Ldebug_line0
+ 184 0025 02       		.uleb128 0x2
+ 185 0026 01       		.byte	0x1
+ 186 0027 06       		.byte	0x6
+ 187 0028 C5010000 		.4byte	.LASF0
+ 188 002c 02       		.uleb128 0x2
+ 189 002d 01       		.byte	0x1
+ 190 002e 08       		.byte	0x8
+ 191 002f F6000000 		.4byte	.LASF1
+ 192 0033 02       		.uleb128 0x2
+ 193 0034 02       		.byte	0x2
+ 194 0035 05       		.byte	0x5
+ 195 0036 ED010000 		.4byte	.LASF2
+ 196 003a 02       		.uleb128 0x2
+ 197 003b 02       		.byte	0x2
+ 198 003c 07       		.byte	0x7
+ 199 003d 0E000000 		.4byte	.LASF3
+ 200 0041 03       		.uleb128 0x3
+ 201 0042 DD010000 		.4byte	.LASF9
+ 202 0046 02       		.byte	0x2
+ 203 0047 3F       		.byte	0x3f
+ 204 0048 4C000000 		.4byte	0x4c
+ 205 004c 02       		.uleb128 0x2
+ 206 004d 04       		.byte	0x4
+ 207 004e 05       		.byte	0x5
+ 208 004f AF010000 		.4byte	.LASF4
+ 209 0053 02       		.uleb128 0x2
+ 210 0054 04       		.byte	0x4
+ 211 0055 07       		.byte	0x7
+ 212 0056 51000000 		.4byte	.LASF5
+ 213 005a 02       		.uleb128 0x2
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 7
+
+
+ 214 005b 08       		.byte	0x8
+ 215 005c 05       		.byte	0x5
+ 216 005d 00000000 		.4byte	.LASF6
+ 217 0061 02       		.uleb128 0x2
+ 218 0062 08       		.byte	0x8
+ 219 0063 07       		.byte	0x7
+ 220 0064 63000000 		.4byte	.LASF7
+ 221 0068 04       		.uleb128 0x4
+ 222 0069 04       		.byte	0x4
+ 223 006a 05       		.byte	0x5
+ 224 006b 696E7400 		.ascii	"int\000"
+ 225 006f 02       		.uleb128 0x2
+ 226 0070 04       		.byte	0x4
+ 227 0071 07       		.byte	0x7
+ 228 0072 21000000 		.4byte	.LASF8
+ 229 0076 03       		.uleb128 0x3
+ 230 0077 F7010000 		.4byte	.LASF10
+ 231 007b 03       		.byte	0x3
+ 232 007c 2C       		.byte	0x2c
+ 233 007d 41000000 		.4byte	0x41
+ 234 0081 03       		.uleb128 0x3
+ 235 0082 4B000000 		.4byte	.LASF11
+ 236 0086 04       		.byte	0x4
+ 237 0087 C2       		.byte	0xc2
+ 238 0088 2C000000 		.4byte	0x2c
+ 239 008c 03       		.uleb128 0x3
+ 240 008d 08020000 		.4byte	.LASF12
+ 241 0091 04       		.byte	0x4
+ 242 0092 C7       		.byte	0xc7
+ 243 0093 4C000000 		.4byte	0x4c
+ 244 0097 02       		.uleb128 0x2
+ 245 0098 04       		.byte	0x4
+ 246 0099 04       		.byte	0x4
+ 247 009a E7010000 		.4byte	.LASF13
+ 248 009e 02       		.uleb128 0x2
+ 249 009f 08       		.byte	0x8
+ 250 00a0 04       		.byte	0x4
+ 251 00a1 A8010000 		.4byte	.LASF14
+ 252 00a5 02       		.uleb128 0x2
+ 253 00a6 01       		.byte	0x1
+ 254 00a7 08       		.byte	0x8
+ 255 00a8 04010000 		.4byte	.LASF15
+ 256 00ac 02       		.uleb128 0x2
+ 257 00ad 04       		.byte	0x4
+ 258 00ae 07       		.byte	0x7
+ 259 00af FF010000 		.4byte	.LASF16
+ 260 00b3 02       		.uleb128 0x2
+ 261 00b4 08       		.byte	0x8
+ 262 00b5 04       		.byte	0x4
+ 263 00b6 D1010000 		.4byte	.LASF17
+ 264 00ba 05       		.uleb128 0x5
+ 265 00bb 3E000000 		.4byte	.LASF22
+ 266 00bf 01       		.byte	0x1
+ 267 00c0 45       		.byte	0x45
+ 268 00c1 8C000000 		.4byte	0x8c
+ 269 00c5 00000000 		.4byte	.LFB63
+ 270 00c9 90000000 		.4byte	.LFE63-.LFB63
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 8
+
+
+ 271 00cd 01       		.uleb128 0x1
+ 272 00ce 9C       		.byte	0x9c
+ 273 00cf 0F010000 		.4byte	0x10f
+ 274 00d3 06       		.uleb128 0x6
+ 275 00d4 10010000 		.4byte	.LASF18
+ 276 00d8 01       		.byte	0x1
+ 277 00d9 45       		.byte	0x45
+ 278 00da 8C000000 		.4byte	0x8c
+ 279 00de 02       		.uleb128 0x2
+ 280 00df 91       		.byte	0x91
+ 281 00e0 6C       		.sleb128 -20
+ 282 00e1 06       		.uleb128 0x6
+ 283 00e2 CB000000 		.4byte	.LASF19
+ 284 00e6 01       		.byte	0x1
+ 285 00e7 45       		.byte	0x45
+ 286 00e8 81000000 		.4byte	0x81
+ 287 00ec 02       		.uleb128 0x2
+ 288 00ed 91       		.byte	0x91
+ 289 00ee 6B       		.sleb128 -21
+ 290 00ef 07       		.uleb128 0x7
+ 291 00f0 E8000000 		.4byte	.LASF20
+ 292 00f4 01       		.byte	0x1
+ 293 00f5 48       		.byte	0x48
+ 294 00f6 0F010000 		.4byte	0x10f
+ 295 00fa 05       		.uleb128 0x5
+ 296 00fb 03       		.byte	0x3
+ 297 00fc 00000000 		.4byte	filteredValue.6192
+ 298 0100 07       		.uleb128 0x7
+ 299 0101 2E000000 		.4byte	.LASF21
+ 300 0105 01       		.byte	0x1
+ 301 0106 4B       		.byte	0x4b
+ 302 0107 8C000000 		.4byte	0x8c
+ 303 010b 02       		.uleb128 0x2
+ 304 010c 91       		.byte	0x91
+ 305 010d 74       		.sleb128 -12
+ 306 010e 00       		.byte	0
+ 307 010f 08       		.uleb128 0x8
+ 308 0110 8C000000 		.4byte	0x8c
+ 309 0114 1F010000 		.4byte	0x11f
+ 310 0118 09       		.uleb128 0x9
+ 311 0119 AC000000 		.4byte	0xac
+ 312 011d 01       		.byte	0x1
+ 313 011e 00       		.byte	0
+ 314 011f 0A       		.uleb128 0xa
+ 315 0120 7A000000 		.4byte	.LASF23
+ 316 0124 01       		.byte	0x1
+ 317 0125 75       		.byte	0x75
+ 318 0126 8C000000 		.4byte	0x8c
+ 319 012a 00000000 		.4byte	.LFB64
+ 320 012e 26000000 		.4byte	.LFE64-.LFB64
+ 321 0132 01       		.uleb128 0x1
+ 322 0133 9C       		.byte	0x9c
+ 323 0134 47010000 		.4byte	0x147
+ 324 0138 07       		.uleb128 0x7
+ 325 0139 09010000 		.4byte	.LASF24
+ 326 013d 01       		.byte	0x1
+ 327 013e 77       		.byte	0x77
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 9
+
+
+ 328 013f 8C000000 		.4byte	0x8c
+ 329 0143 02       		.uleb128 0x2
+ 330 0144 91       		.byte	0x91
+ 331 0145 74       		.sleb128 -12
+ 332 0146 00       		.byte	0
+ 333 0147 0B       		.uleb128 0xb
+ 334 0148 B8010000 		.4byte	.LASF28
+ 335 014c 05       		.byte	0x5
+ 336 014d 2A06     		.2byte	0x62a
+ 337 014f 53010000 		.4byte	0x153
+ 338 0153 0C       		.uleb128 0xc
+ 339 0154 76000000 		.4byte	0x76
+ 340 0158 00       		.byte	0
+ 341              		.section	.debug_abbrev,"",%progbits
+ 342              	.Ldebug_abbrev0:
+ 343 0000 01       		.uleb128 0x1
+ 344 0001 11       		.uleb128 0x11
+ 345 0002 01       		.byte	0x1
+ 346 0003 25       		.uleb128 0x25
+ 347 0004 0E       		.uleb128 0xe
+ 348 0005 13       		.uleb128 0x13
+ 349 0006 0B       		.uleb128 0xb
+ 350 0007 03       		.uleb128 0x3
+ 351 0008 0E       		.uleb128 0xe
+ 352 0009 1B       		.uleb128 0x1b
+ 353 000a 0E       		.uleb128 0xe
+ 354 000b 55       		.uleb128 0x55
+ 355 000c 17       		.uleb128 0x17
+ 356 000d 11       		.uleb128 0x11
+ 357 000e 01       		.uleb128 0x1
+ 358 000f 10       		.uleb128 0x10
+ 359 0010 17       		.uleb128 0x17
+ 360 0011 00       		.byte	0
+ 361 0012 00       		.byte	0
+ 362 0013 02       		.uleb128 0x2
+ 363 0014 24       		.uleb128 0x24
+ 364 0015 00       		.byte	0
+ 365 0016 0B       		.uleb128 0xb
+ 366 0017 0B       		.uleb128 0xb
+ 367 0018 3E       		.uleb128 0x3e
+ 368 0019 0B       		.uleb128 0xb
+ 369 001a 03       		.uleb128 0x3
+ 370 001b 0E       		.uleb128 0xe
+ 371 001c 00       		.byte	0
+ 372 001d 00       		.byte	0
+ 373 001e 03       		.uleb128 0x3
+ 374 001f 16       		.uleb128 0x16
+ 375 0020 00       		.byte	0
+ 376 0021 03       		.uleb128 0x3
+ 377 0022 0E       		.uleb128 0xe
+ 378 0023 3A       		.uleb128 0x3a
+ 379 0024 0B       		.uleb128 0xb
+ 380 0025 3B       		.uleb128 0x3b
+ 381 0026 0B       		.uleb128 0xb
+ 382 0027 49       		.uleb128 0x49
+ 383 0028 13       		.uleb128 0x13
+ 384 0029 00       		.byte	0
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 10
+
+
+ 385 002a 00       		.byte	0
+ 386 002b 04       		.uleb128 0x4
+ 387 002c 24       		.uleb128 0x24
+ 388 002d 00       		.byte	0
+ 389 002e 0B       		.uleb128 0xb
+ 390 002f 0B       		.uleb128 0xb
+ 391 0030 3E       		.uleb128 0x3e
+ 392 0031 0B       		.uleb128 0xb
+ 393 0032 03       		.uleb128 0x3
+ 394 0033 08       		.uleb128 0x8
+ 395 0034 00       		.byte	0
+ 396 0035 00       		.byte	0
+ 397 0036 05       		.uleb128 0x5
+ 398 0037 2E       		.uleb128 0x2e
+ 399 0038 01       		.byte	0x1
+ 400 0039 3F       		.uleb128 0x3f
+ 401 003a 19       		.uleb128 0x19
+ 402 003b 03       		.uleb128 0x3
+ 403 003c 0E       		.uleb128 0xe
+ 404 003d 3A       		.uleb128 0x3a
+ 405 003e 0B       		.uleb128 0xb
+ 406 003f 3B       		.uleb128 0x3b
+ 407 0040 0B       		.uleb128 0xb
+ 408 0041 27       		.uleb128 0x27
+ 409 0042 19       		.uleb128 0x19
+ 410 0043 49       		.uleb128 0x49
+ 411 0044 13       		.uleb128 0x13
+ 412 0045 11       		.uleb128 0x11
+ 413 0046 01       		.uleb128 0x1
+ 414 0047 12       		.uleb128 0x12
+ 415 0048 06       		.uleb128 0x6
+ 416 0049 40       		.uleb128 0x40
+ 417 004a 18       		.uleb128 0x18
+ 418 004b 9742     		.uleb128 0x2117
+ 419 004d 19       		.uleb128 0x19
+ 420 004e 01       		.uleb128 0x1
+ 421 004f 13       		.uleb128 0x13
+ 422 0050 00       		.byte	0
+ 423 0051 00       		.byte	0
+ 424 0052 06       		.uleb128 0x6
+ 425 0053 05       		.uleb128 0x5
+ 426 0054 00       		.byte	0
+ 427 0055 03       		.uleb128 0x3
+ 428 0056 0E       		.uleb128 0xe
+ 429 0057 3A       		.uleb128 0x3a
+ 430 0058 0B       		.uleb128 0xb
+ 431 0059 3B       		.uleb128 0x3b
+ 432 005a 0B       		.uleb128 0xb
+ 433 005b 49       		.uleb128 0x49
+ 434 005c 13       		.uleb128 0x13
+ 435 005d 02       		.uleb128 0x2
+ 436 005e 18       		.uleb128 0x18
+ 437 005f 00       		.byte	0
+ 438 0060 00       		.byte	0
+ 439 0061 07       		.uleb128 0x7
+ 440 0062 34       		.uleb128 0x34
+ 441 0063 00       		.byte	0
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 11
+
+
+ 442 0064 03       		.uleb128 0x3
+ 443 0065 0E       		.uleb128 0xe
+ 444 0066 3A       		.uleb128 0x3a
+ 445 0067 0B       		.uleb128 0xb
+ 446 0068 3B       		.uleb128 0x3b
+ 447 0069 0B       		.uleb128 0xb
+ 448 006a 49       		.uleb128 0x49
+ 449 006b 13       		.uleb128 0x13
+ 450 006c 02       		.uleb128 0x2
+ 451 006d 18       		.uleb128 0x18
+ 452 006e 00       		.byte	0
+ 453 006f 00       		.byte	0
+ 454 0070 08       		.uleb128 0x8
+ 455 0071 01       		.uleb128 0x1
+ 456 0072 01       		.byte	0x1
+ 457 0073 49       		.uleb128 0x49
+ 458 0074 13       		.uleb128 0x13
+ 459 0075 01       		.uleb128 0x1
+ 460 0076 13       		.uleb128 0x13
+ 461 0077 00       		.byte	0
+ 462 0078 00       		.byte	0
+ 463 0079 09       		.uleb128 0x9
+ 464 007a 21       		.uleb128 0x21
+ 465 007b 00       		.byte	0
+ 466 007c 49       		.uleb128 0x49
+ 467 007d 13       		.uleb128 0x13
+ 468 007e 2F       		.uleb128 0x2f
+ 469 007f 0B       		.uleb128 0xb
+ 470 0080 00       		.byte	0
+ 471 0081 00       		.byte	0
+ 472 0082 0A       		.uleb128 0xa
+ 473 0083 2E       		.uleb128 0x2e
+ 474 0084 01       		.byte	0x1
+ 475 0085 3F       		.uleb128 0x3f
+ 476 0086 19       		.uleb128 0x19
+ 477 0087 03       		.uleb128 0x3
+ 478 0088 0E       		.uleb128 0xe
+ 479 0089 3A       		.uleb128 0x3a
+ 480 008a 0B       		.uleb128 0xb
+ 481 008b 3B       		.uleb128 0x3b
+ 482 008c 0B       		.uleb128 0xb
+ 483 008d 27       		.uleb128 0x27
+ 484 008e 19       		.uleb128 0x19
+ 485 008f 49       		.uleb128 0x49
+ 486 0090 13       		.uleb128 0x13
+ 487 0091 11       		.uleb128 0x11
+ 488 0092 01       		.uleb128 0x1
+ 489 0093 12       		.uleb128 0x12
+ 490 0094 06       		.uleb128 0x6
+ 491 0095 40       		.uleb128 0x40
+ 492 0096 18       		.uleb128 0x18
+ 493 0097 9642     		.uleb128 0x2116
+ 494 0099 19       		.uleb128 0x19
+ 495 009a 01       		.uleb128 0x1
+ 496 009b 13       		.uleb128 0x13
+ 497 009c 00       		.byte	0
+ 498 009d 00       		.byte	0
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 12
+
+
+ 499 009e 0B       		.uleb128 0xb
+ 500 009f 34       		.uleb128 0x34
+ 501 00a0 00       		.byte	0
+ 502 00a1 03       		.uleb128 0x3
+ 503 00a2 0E       		.uleb128 0xe
+ 504 00a3 3A       		.uleb128 0x3a
+ 505 00a4 0B       		.uleb128 0xb
+ 506 00a5 3B       		.uleb128 0x3b
+ 507 00a6 05       		.uleb128 0x5
+ 508 00a7 49       		.uleb128 0x49
+ 509 00a8 13       		.uleb128 0x13
+ 510 00a9 3F       		.uleb128 0x3f
+ 511 00aa 19       		.uleb128 0x19
+ 512 00ab 3C       		.uleb128 0x3c
+ 513 00ac 19       		.uleb128 0x19
+ 514 00ad 00       		.byte	0
+ 515 00ae 00       		.byte	0
+ 516 00af 0C       		.uleb128 0xc
+ 517 00b0 35       		.uleb128 0x35
+ 518 00b1 00       		.byte	0
+ 519 00b2 49       		.uleb128 0x49
+ 520 00b3 13       		.uleb128 0x13
+ 521 00b4 00       		.byte	0
+ 522 00b5 00       		.byte	0
+ 523 00b6 00       		.byte	0
+ 524              		.section	.debug_aranges,"",%progbits
+ 525 0000 24000000 		.4byte	0x24
+ 526 0004 0200     		.2byte	0x2
+ 527 0006 00000000 		.4byte	.Ldebug_info0
+ 528 000a 04       		.byte	0x4
+ 529 000b 00       		.byte	0
+ 530 000c 0000     		.2byte	0
+ 531 000e 0000     		.2byte	0
+ 532 0010 00000000 		.4byte	.LFB63
+ 533 0014 90000000 		.4byte	.LFE63-.LFB63
+ 534 0018 00000000 		.4byte	.LFB64
+ 535 001c 26000000 		.4byte	.LFE64-.LFB64
+ 536 0020 00000000 		.4byte	0
+ 537 0024 00000000 		.4byte	0
+ 538              		.section	.debug_ranges,"",%progbits
+ 539              	.Ldebug_ranges0:
+ 540 0000 00000000 		.4byte	.LFB63
+ 541 0004 90000000 		.4byte	.LFE63
+ 542 0008 00000000 		.4byte	.LFB64
+ 543 000c 26000000 		.4byte	.LFE64
+ 544 0010 00000000 		.4byte	0
+ 545 0014 00000000 		.4byte	0
+ 546              		.section	.debug_line,"",%progbits
+ 547              	.Ldebug_line0:
+ 548 0000 90010000 		.section	.debug_str,"MS",%progbits,1
+ 548      02005601 
+ 548      00000201 
+ 548      FB0E0D00 
+ 548      01010101 
+ 549              	.LASF6:
+ 550 0000 6C6F6E67 		.ascii	"long long int\000"
+ 550      206C6F6E 
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 13
+
+
+ 550      6720696E 
+ 550      7400
+ 551              	.LASF3:
+ 552 000e 73686F72 		.ascii	"short unsigned int\000"
+ 552      7420756E 
+ 552      7369676E 
+ 552      65642069 
+ 552      6E7400
+ 553              	.LASF8:
+ 554 0021 756E7369 		.ascii	"unsigned int\000"
+ 554      676E6564 
+ 554      20696E74 
+ 554      00
+ 555              	.LASF21:
+ 556 002e 66696C56 		.ascii	"filValueRounded\000"
+ 556      616C7565 
+ 556      526F756E 
+ 556      64656400 
+ 557              	.LASF22:
+ 558 003e 46696C74 		.ascii	"FilterSignal\000"
+ 558      65725369 
+ 558      676E616C 
+ 558      00
+ 559              	.LASF11:
+ 560 004b 75696E74 		.ascii	"uint8\000"
+ 560      3800
+ 561              	.LASF5:
+ 562 0051 6C6F6E67 		.ascii	"long unsigned int\000"
+ 562      20756E73 
+ 562      69676E65 
+ 562      6420696E 
+ 562      7400
+ 563              	.LASF7:
+ 564 0063 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 564      206C6F6E 
+ 564      6720756E 
+ 564      7369676E 
+ 564      65642069 
+ 565              	.LASF23:
+ 566 007a 4765744F 		.ascii	"GetOffset\000"
+ 566      66667365 
+ 566      7400
+ 567              	.LASF27:
+ 568 0084 433A5C55 		.ascii	"C:\\Users\\nm\\Desktop\\TempSenseExample\\CE210514_"
+ 568      73657273 
+ 568      5C6E6D5C 
+ 568      4465736B 
+ 568      746F705C 
+ 569 00b2 50534F43 		.ascii	"PSOC3_5_Thermistor.cydsn\000"
+ 569      335F355F 
+ 569      54686572 
+ 569      6D697374 
+ 569      6F722E63 
+ 570              	.LASF19:
+ 571 00cb 73656E73 		.ascii	"sensor\000"
+ 571      6F7200
+ 572              	.LASF26:
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 14
+
+
+ 573 00d2 2E5C7265 		.ascii	".\\removeOffsetNoise.c\000"
+ 573      6D6F7665 
+ 573      4F666673 
+ 573      65744E6F 
+ 573      6973652E 
+ 574              	.LASF20:
+ 575 00e8 66696C74 		.ascii	"filteredValue\000"
+ 575      65726564 
+ 575      56616C75 
+ 575      6500
+ 576              	.LASF1:
+ 577 00f6 756E7369 		.ascii	"unsigned char\000"
+ 577      676E6564 
+ 577      20636861 
+ 577      7200
+ 578              	.LASF15:
+ 579 0104 63686172 		.ascii	"char\000"
+ 579      00
+ 580              	.LASF24:
+ 581 0109 72657375 		.ascii	"result\000"
+ 581      6C7400
+ 582              	.LASF18:
+ 583 0110 41444353 		.ascii	"ADCSample\000"
+ 583      616D706C 
+ 583      6500
+ 584              	.LASF25:
+ 585 011a 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 585      4320342E 
+ 585      392E3320 
+ 585      32303135 
+ 585      30333033 
+ 586 014d 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m3 -mthumb -g -O"
+ 586      20726576 
+ 586      6973696F 
+ 586      6E203232 
+ 586      31323230 
+ 587 0180 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 587      66756E63 
+ 587      74696F6E 
+ 587      2D736563 
+ 587      74696F6E 
+ 588              	.LASF14:
+ 589 01a8 646F7562 		.ascii	"double\000"
+ 589      6C6500
+ 590              	.LASF4:
+ 591 01af 6C6F6E67 		.ascii	"long int\000"
+ 591      20696E74 
+ 591      00
+ 592              	.LASF28:
+ 593 01b8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 593      52784275 
+ 593      66666572 
+ 593      00
+ 594              	.LASF0:
+ 595 01c5 7369676E 		.ascii	"signed char\000"
+ 595      65642063 
+ 595      68617200 
+ARM GAS  C:\Users\nm\AppData\Local\Temp\ccYO8qC7.s 			page 15
+
+
+ 596              	.LASF17:
+ 597 01d1 6C6F6E67 		.ascii	"long double\000"
+ 597      20646F75 
+ 597      626C6500 
+ 598              	.LASF9:
+ 599 01dd 5F5F696E 		.ascii	"__int32_t\000"
+ 599      7433325F 
+ 599      7400
+ 600              	.LASF13:
+ 601 01e7 666C6F61 		.ascii	"float\000"
+ 601      7400
+ 602              	.LASF2:
+ 603 01ed 73686F72 		.ascii	"short int\000"
+ 603      7420696E 
+ 603      7400
+ 604              	.LASF10:
+ 605 01f7 696E7433 		.ascii	"int32_t\000"
+ 605      325F7400 
+ 606              	.LASF16:
+ 607 01ff 73697A65 		.ascii	"sizetype\000"
+ 607      74797065 
+ 607      00
+ 608              	.LASF12:
+ 609 0208 696E7433 		.ascii	"int32\000"
+ 609      3200
+ 610              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
